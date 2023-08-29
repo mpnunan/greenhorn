@@ -4,13 +4,13 @@ import { clientCredentials } from '../utils/client';
 const greenhornEndpoint = clientCredentials.databaseURL;
 
 const getAllCommunities = async () => {
-  const communities = await axios.get(greenhornEndpoint);
-  return communities;
+  const communities = await axios.get(`${greenhornEndpoint}/communities.json`);
+  return Object.values(communities.data);
 };
 
 const getSingleCommunity = async (id) => {
   const community = await axios.get(`${greenhornEndpoint}/communities/${id}.json`);
-  return community;
+  return community.data;
 };
 
 const getMultiCommunities = async (...idArray) => {

@@ -7,7 +7,8 @@ const greenhornEndpoint = clientCredentials.databaseURL;
 const getUserCommunities = async (id) => {
   const userCommunityArray = [];
   const userCommunities = await axios.get(`${greenhornEndpoint}/userCommunities.json?orderBy="userId"&equalTo="${id}"`);
-  userCommunities.forEach((userCommunity) => {
+  const userCommunityIdArray = Object.values(userCommunities.data);
+  userCommunityIdArray.forEach((userCommunity) => {
     getSingleCommunity(userCommunity.communityId)
       .then((community) => {
         userCommunityArray.push(community);
