@@ -12,7 +12,7 @@ export default function CommunitySubmissions({ communityObj }) {
 
   useEffect(() => {
     communitySpecificSubmissions(communityObj.id);
-  }, [communityObj]);
+  }, [communityObj.id]);
 
   return (
     <section className="communityPageSubmissions">

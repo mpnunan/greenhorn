@@ -26,7 +26,7 @@ const getMultiCommunities = async (...idArray) => {
 
 const getCommunitySubmissions = async (id) => {
   const communitySubmissions = await axios.get(`${greenhornEndpoint}/submissions.json?orderBy="communityId"&equalTo="${id}"`);
-  return Object.values(communitySubmissions);
+  return Object.values(communitySubmissions.data);
 };
 
 export {
