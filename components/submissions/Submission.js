@@ -4,9 +4,15 @@ import { Card, CardContent, Typography } from '@mui/material';
 
 export default function Submission({ submissionObj }) {
   return (
-    <Card className="submissionElement">
+    <Card
+      className="submissionElement"
+      sx={{
+        width: 300,
+
+      }}
+    >
       <CardContent>
-        <Typography variant="h2">{submissionObj.title}</Typography>
+        <Typography variant="h6" component="h2">{submissionObj.title}</Typography>
         <Typography variant="body">{submissionObj.body}</Typography>
       </CardContent>
     </Card>

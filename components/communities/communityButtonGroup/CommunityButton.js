@@ -1,15 +1,16 @@
-import { Button, Link } from '@mui/material';
+import { Button } from '@mui/material';
+import Link from 'next/link';
 import PropTypes from 'prop-types';
 
 export default function CommunityButton({ communityObj, keyNumber }) {
   return (
-    <Button
-      key={keyNumber}
-      component={Link}
-      href={`/communities/${communityObj.id}`}
-    >
-      {communityObj.name}
-    </Button>
+    <Link href={`/communities/${communityObj.id}`} passHref>
+      <Button
+        key={keyNumber}
+      >
+        {communityObj.name}
+      </Button>
+    </Link>
   );
 }
 

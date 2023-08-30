@@ -25,6 +25,9 @@ function Home() {
       }}
     >
       <header>
+        <h1>
+          greenhorn
+        </h1>
         <CommunityButtonGroup />
       </header>
       <section className="submissionSection">
