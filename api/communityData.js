@@ -4,18 +4,13 @@ import { clientCredentials } from '../utils/client';
 const greenhornEndpoint = clientCredentials.databaseURL;
 
 const getAllCommunities = async () => {
-  const communities = await axios.get(greenhornEndpoint);
-  return communities;
-};
-
-const getUserCommunities = async (uid) => {
-  const userCommunities = await axios.get(`${greenhornEndpoint}/communities.json?orderBy="uid"&equalTo="${uid}"`);
-  return userCommunities;
+  const communities = await axios.get(`${greenhornEndpoint}/communities.json`);
+  return Object.values(communities.data);
 };
 
 const getSingleCommunity = async (id) => {
   const community = await axios.get(`${greenhornEndpoint}/communities/${id}.json`);
-  return community;
+  return community.data;
 };
 
 const getMultiCommunities = async (...idArray) => {
@@ -29,16 +24,14 @@ const getMultiCommunities = async (...idArray) => {
   return communityArray;
 };
 
-const getUserMultiCommunities = async (uid) => {
-  const userCommunities = await getUserCommunities(uid);
-  const userMultiCommunities = await getMultiCommunities(userCommunities);
-  return userMultiCommunities;
+const getCommunitySubmissions = async (id) => {
+  const communitySubmissions = await axios.get(`${greenhornEndpoint}/submissions.json?orderBy="communityId"&equalTo="${id}"`);
+  return Object.values(communitySubmissions.data);
 };
 
 export {
   getAllCommunities,
-  getUserCommunities,
   getSingleCommunity,
   getMultiCommunities,
-  getUserMultiCommunities,
+  getCommunitySubmissions,
 };

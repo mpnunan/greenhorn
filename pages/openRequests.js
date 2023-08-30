@@ -1,19 +1,18 @@
 import { useEffect, useState } from 'react';
 import { Paper } from '@mui/material';
+import { getAllRequests } from '../api/submissionData';
 import Submission from '../components/submissions/Submission';
-import { getAllSubmissions } from '../api/submissionData';
 import CommunityButtonGroup from '../components/communities/communityButtonGroup/CommunityButtonGroup';
 
-function Home() {
-  // const { user } = useAuth(); // TODO: COMMENT IN FOR AUTH
-  const [submissions, setSubmissions] = useState([]);
+export default function Requests() {
+  const [requests, setRequests] = useState([]);
 
-  const getSubmissions = () => {
-    getAllSubmissions().then(setSubmissions);
+  const getRequests = () => {
+    getAllRequests().then(setRequests);
   };
 
   useEffect(() => {
-    getSubmissions();
+    getRequests();
   }, []);
 
   return (
@@ -26,18 +25,16 @@ function Home() {
     >
       <header>
         <h1>
-          greenhorn
+          Open Requests
         </h1>
         <CommunityButtonGroup />
       </header>
-      <section className="submissionSection">
-        {submissions.map((submission) => (
-          <Submission key={submission.id} submissionObj={submission} />
+      <section className="openRequests">
+        {requests.map((request) => (
+          <Submission key={request.id} submissionObj={request} />
         ))}
       </section>
     </Paper>
 
   );
 }
-
-export default Home;
