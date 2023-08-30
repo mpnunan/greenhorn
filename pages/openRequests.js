@@ -29,7 +29,7 @@ export default function Requests() {
         </h1>
         <CommunityButtonGroup />
       </header>
-      <section className="submissionSection">
+      <section className="openRequests">
         {requests.map((request) => (
           <Submission key={request.id} submissionObj={request} />
         ))}

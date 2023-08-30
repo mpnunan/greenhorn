@@ -42,7 +42,7 @@ h1 {
   font-weight: 500;
 }
 
-.submissionSection {
+.submissionSection, .openRequests, .communityPageSubmissions {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
