@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Paper } from '@mui/material';
 import { getAllRequests } from '../api/submissionData';
 import Submission from '../components/submissions/Submission';
+import CommunityButtonGroup from '../components/communities/communityButtonGroup/CommunityButtonGroup';
 
 export default function Requests() {
   const [requests, setRequests] = useState([]);
@@ -22,6 +23,12 @@ export default function Requests() {
         height: '80vh',
       }}
     >
+      <header>
+        <h1>
+          Open Requests
+        </h1>
+        <CommunityButtonGroup />
+      </header>
       <section className="submissionSection">
         {requests.map((request) => (
           <Submission key={request.id} submissionObj={request} />

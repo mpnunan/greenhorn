@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { Paper } from '@mui/material';
 import { getSingleCommunity } from '../../api/communityData';
 import CommunitySubmissions from '../../components/communities/CommunitySubmissions';
+import CommunityButtonGroup from '../../components/communities/communityButtonGroup/CommunityButtonGroup';
 
 export default function CommunityPage() {
   const [community, setCommunity] = useState({});
@@ -28,6 +29,7 @@ export default function CommunityPage() {
     >
       <header>
         <h1>{`Welcome to the ${community.name} page`}</h1>
+        <CommunityButtonGroup />
       </header>
       <CommunitySubmissions communityObj={community} />
     </Paper>
