@@ -1,24 +1,21 @@
 # greenhorn
 
-[greenhorn is deployed here](https://greenhorn.netlify.app/)
+[greenhorn](https://greenhorn.netlify.app/)
 
 
-### Deploying on Netlify
-Netlify will automatically detect your project and prepopulate the settings, but should something go wrong and it does not, here are the commands:
+### Overview
 
-- Build Command: `npm run build`
-- Publish directory: `.next`
+greenhorn is an application where experienced and aspiring builders can come together in a community promoting the spread of construction knowledge.
+#### Wireframe and ERD
 
-#### Additional Steps to Take on Netlify
-- Add Environmental Variables
-    - Any Enviromental variables you are using in your `.env` file should be added to Netlify. 
-        - Go to Site settings > Build & deploy > Environment > Environment variables and the keys and values there.
+[greenhorn wireframe](https://www.figma.com/file/Hefei2gxl04SgnkbJ3lFEm/greenhorn?type=design&node-id=0-1&mode=design&t=5nAvZlbV2MRxFJCs-0)
 
-- Update Firebase URL Settings
-    - In Firebase under Authentication select sign in methods, scroll to Authorized domains. Add your Netlify URL.
-        
-## Learn More about Next.js
-To learn more about Next.js, take a look at the following resources:
+[basic greenhorn ERD](https://dbdiagram.io/d/64e0cd2602bd1c4a5e0c414c)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+[expanded greenhorn ERD](https://dbdiagram.io/d/64dae3c402bd1c4a5ec7071c)
+   
+#### Users and Features
+
+The typical green horn user is either an experienced builder looking to share knowledge or a hobbyist/ amateur looking to either grow their knowledge base or ask for help on a specific project.
+
+Users can submit information, submit request, browse specific communites, and browse open requests to submit an answer to the question.
