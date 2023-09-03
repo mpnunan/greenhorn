@@ -6,18 +6,18 @@ import Submission from '../submissions/Submission';
 export default function CommunitySubmissions({ communityObj }) {
   const [communitySubmissions, setCommunitySubmissions] = useState([]);
 
-  const communitySpecificSubmissions = (id) => {
-    getCommunitySubmissions(id).then(setCommunitySubmissions);
+  const communitySpecificSubmissions = (communityId) => {
+    getCommunitySubmissions(communityId).then(setCommunitySubmissions);
   };
 
   useEffect(() => {
     communitySpecificSubmissions(communityObj.id);
-  }, [communityObj.id]);
+  }, [communityObj]);
 
   return (
     <section className="communityPageSubmissions">
       {communitySubmissions.map((communitySubmission) => (
-        <Submission key={communitySubmission.id} submissionObj={communitySubmission} />
+        <Submission key={communitySubmission.id} submissionObj={communitySubmission} afterUpdate={communitySpecificSubmissions} />
       ))}
     </section>
   );

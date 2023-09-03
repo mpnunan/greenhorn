@@ -42,13 +42,26 @@ h1 {
   font-weight: 500;
 }
 
+.profileCardContent {
+  display: flex;
+  flex-flow: column nowrap;
+  align-content: center;
+}
+
+
 .submissionSection, .openRequests, .communityPageSubmissions {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
 }
+
 .submissionElement {
   
   height: 200px;
   margin: 20px 40px;
+}
+
+#newSubmissionContainer {
+  display: flex;
+  justify-content: center;
 }

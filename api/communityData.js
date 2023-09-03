@@ -29,9 +29,34 @@ const getCommunitySubmissions = async (id) => {
   return Object.values(communitySubmissions.data);
 };
 
+const createCommunity = async (payload) => {
+  const newCommunity = await axios.post(`${greenhornEndpoint}/submissions.json`, payload);
+  return newCommunity.data;
+};
+
+const updateCommunity = async (payload) => {
+  const revisedCommunity = await axios.patch(`${greenhornEndpoint}/submissions/${payload.id}.json`, payload);
+  return revisedCommunity.data;
+};
+
+const deleteCommunity = async (id) => {
+  const formerCommunity = await axios.delete(`${greenhornEndpoint}/submissions/${id}.json`);
+  return formerCommunity;
+};
+
+const getFilteredCommunities = async (callback, ...params) => {
+  const data = await getAllCommunities();
+  const filterData = await callback(data, ...params);
+  return filterData;
+};
+
 export {
   getAllCommunities,
   getSingleCommunity,
   getMultiCommunities,
   getCommunitySubmissions,
+  createCommunity,
+  updateCommunity,
+  deleteCommunity,
+  getFilteredCommunities,
 };

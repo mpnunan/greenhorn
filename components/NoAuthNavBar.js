@@ -4,6 +4,8 @@ import Link from 'next/link';
 import {
   Navbar, Container, Nav,
 } from 'react-bootstrap';
+import { Button } from '@mui/material';
+import { signIn } from '../utils/auth';
 
 export default function NoAuthNavBar() {
   return (
@@ -20,6 +22,7 @@ export default function NoAuthNavBar() {
               <Nav.Link>Open Requests</Nav.Link>
             </Link>
           </Nav>
+          <Button onClick={signIn}>Sign In</Button>
         </Navbar.Collapse>
       </Container>
     </Navbar>

@@ -23,9 +23,34 @@ const getSingleSubmission = async (id) => {
   return submission.data;
 };
 
+const createSubmission = async (payload) => {
+  const newSubmission = await axios.post(`${greenhornEndpoint}/submissions.json`, payload);
+  return newSubmission.data;
+};
+
+const updateSubmission = async (payload) => {
+  const revisedSubmission = await axios.patch(`${greenhornEndpoint}/submissions/${payload.id}.json`, payload);
+  return revisedSubmission;
+};
+
+const deleteSubmission = async (id) => {
+  const formerSubmission = await axios.delete(`${greenhornEndpoint}/submissions/${id}.json`);
+  return formerSubmission;
+};
+
+const getFilteredSubmissions = async (callback, ...params) => {
+  const data = await getAllSubmissions();
+  const filterData = await callback(data, ...params);
+  return filterData;
+};
+
 export {
   getAllSubmissions,
   getAllRequests,
   getUserSubmissions,
   getSingleSubmission,
+  createSubmission,
+  updateSubmission,
+  deleteSubmission,
+  getFilteredSubmissions,
 };
