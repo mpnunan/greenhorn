@@ -4,7 +4,11 @@ import PropTypes from 'prop-types';
 
 export default function SubmissionCardActions({ submissionObj, cardAction }) {
   return (
-    <CardActions>
+    <CardActions
+      sx={{
+        justifyContent: 'center',
+      }}
+    >
       <Link href={`/submission/edit/${submissionObj.id}`} passHref>
         <Button>{submissionObj.request ? 'Update Request' : 'Update Post'}</Button>
       </Link>

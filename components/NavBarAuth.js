@@ -7,6 +7,7 @@ import {
 import { Button } from '@mui/material';
 import { signOut } from '../utils/auth';
 import { useAuth } from '../utils/context/authContext';
+import TemporaryDrawer from './user/UserDrawer';
 
 export default function NavBarAuth() {
   const { user } = useAuth();
@@ -27,6 +28,7 @@ export default function NavBarAuth() {
               <Nav.Link>Contribute</Nav.Link>
             </Link>
           </Nav>
+          <TemporaryDrawer />
           <Link passHref href={`/user/profile/${user.displayName}`}>
             <Button>
               {user.displayName}
