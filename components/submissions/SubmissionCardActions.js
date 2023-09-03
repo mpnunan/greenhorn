@@ -1,21 +1,14 @@
 import { Button, CardActions } from '@mui/material';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
-import { deleteSubmission } from '../../api/submissionData';
 
-export default function SubmissionCardActions({ submissionObj, updateFunction }) {
-  const deletePost = () => {
-    if (window.confirm(`Delete ${submissionObj.title}?`)) {
-      deleteSubmission(submissionObj.id).then(() => updateFunction());
-    }
-  };
-
+export default function SubmissionCardActions({ submissionObj, cardAction }) {
   return (
     <CardActions>
       <Link href={`/submission/edit/${submissionObj.id}`} passHref>
-        <Button>Update Post</Button>
+        <Button>{submissionObj.request ? 'Update Request' : 'Update Post'}</Button>
       </Link>
-      <Button onClick={deletePost}>Delete Post</Button>
+      <Button onClick={cardAction}>{submissionObj.request ? 'Delete Request' : 'Delete Post'}</Button>
     </CardActions>
   );
 }
@@ -25,6 +18,7 @@ SubmissionCardActions.propTypes = {
     title: PropTypes.string,
     body: PropTypes.string,
     id: PropTypes.string,
+    request: PropTypes.bool,
   }).isRequired,
-  updateFunction: PropTypes.func.isRequired,
+  cardAction: PropTypes.func.isRequired,
 };
