@@ -1,23 +1,42 @@
-// import { Button } from 'react-bootstrap'; // TODO: COMMENT IN FOR AUTH
-// import { signOut } from '../utils/auth'; // TODO: COMMENT IN FOR AUTH
-// import { useAuth } from '../utils/context/authContext'; // TODO: COMMENT IN FOR AUTH
+import { useEffect, useState } from 'react';
+import { Paper } from '@mui/material';
+import Submission from '../components/submissions/Submission';
+import { getAllSubmissions } from '../api/submissionData';
+import CommunityButtonGroup from '../components/communities/communityButtonGroup/CommunityButtonGroup';
 
 function Home() {
   // const { user } = useAuth(); // TODO: COMMENT IN FOR AUTH
+  const [submissions, setSubmissions] = useState([]);
 
-  const user = { displayName: 'Dr. T' }; // TODO: COMMENT OUT FOR AUTH
+  const getSubmissions = () => {
+    getAllSubmissions().then(setSubmissions);
+  };
+
+  useEffect(() => {
+    getSubmissions();
+  }, []);
+
   return (
-    <div
-      className="text-center d-flex flex-column justify-content-center align-content-center"
-      style={{
-        height: '90vh',
-        padding: '30px',
-        maxWidth: '400px',
-        margin: '0 auto',
+    <Paper
+      sx={{
+        bgcolor: 'rgb(5, 50, 5)',
+        width: '100%',
+        minHeight: 'fit-content',
       }}
     >
-      <h1>Hello {user.displayName}! </h1>
-    </div>
+      <header>
+        <h1>
+          greenhorn
+        </h1>
+        <CommunityButtonGroup />
+      </header>
+      <section className="submissionSection">
+        {submissions.map((submission) => (
+          <Submission key={submission.id} submissionObj={submission} afterUpdate={getSubmissions} />
+        ))}
+      </section>
+    </Paper>
+
   );
 }
 
