@@ -5,20 +5,24 @@ import { getCommunitySubmissions } from '../../api/communityData';
 import Submission from '../submissions/Submission';
 
 export default function CommunitySubmissions({ communityObj }) {
-  const [communitySubmissions, setCommunitySubmissions] = useState([communityObj]);
+  const [communitySubmissions, setCommunitySubmissions] = useState([]);
 
-  const communityPosts = () => {
-    getCommunitySubmissions(communityObj.id).then(setCommunitySubmissions);
+  const communityPosts = (id) => {
+    getCommunitySubmissions(id).then(setCommunitySubmissions);
+  };
+
+  const updatePage = () => {
+    communityPosts(communityObj.id);
   };
 
   useEffect(() => {
-    communityPosts();
-  }, []);
+    communityPosts(communityObj.id);
+  }, [communityObj.id]);
 
   return (
     <section className="communityPageSubmissions">
       {communitySubmissions.map((communitySubmission) => (
-        <Submission key={communitySubmission.id} submissionObj={communitySubmission} afterUpdate={communityPosts} />
+        <Submission key={communitySubmission.id} submissionObj={communitySubmission} afterUpdate={updatePage} />
       ))}
     </section>
   );
