@@ -31,7 +31,7 @@ export default function Requests() {
       </header>
       <section className="openRequests">
         {requests.map((request) => (
-          <Submission key={request.id} submissionObj={request} />
+          <Submission key={request.id} submissionObj={request} afterUpdate={getRequests} />
         ))}
       </section>
     </Paper>

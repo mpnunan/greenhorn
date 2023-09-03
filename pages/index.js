@@ -20,8 +20,8 @@ function Home() {
     <Paper
       sx={{
         bgcolor: 'rgb(5, 50, 5)',
-        width: '80vw',
-        height: '80vh',
+        width: '100%',
+        minHeight: 'fit-content',
       }}
     >
       <header>
@@ -32,7 +32,7 @@ function Home() {
       </header>
       <section className="submissionSection">
         {submissions.map((submission) => (
-          <Submission key={submission.id} submissionObj={submission} />
+          <Submission key={submission.id} submissionObj={submission} afterUpdate={getSubmissions} />
         ))}
       </section>
     </Paper>

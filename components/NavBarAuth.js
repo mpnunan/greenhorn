@@ -23,6 +23,9 @@ export default function NavBarAuth() {
             <Link passHref href="/openRequests">
               <Nav.Link>Open Requests</Nav.Link>
             </Link>
+            <Link passHref href="/submission/submitNew">
+              <Nav.Link>Contribute</Nav.Link>
+            </Link>
           </Nav>
           <Link passHref href={`/user/profile/${user.displayName}`}>
             <Button>
