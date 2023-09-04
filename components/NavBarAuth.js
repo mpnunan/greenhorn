@@ -4,12 +4,9 @@ import Link from 'next/link';
 import {
   Navbar, Container, Nav,
 } from 'react-bootstrap';
-import { Button } from '@mui/material';
-import { signOut } from '../utils/auth';
-import { useAuth } from '../utils/context/authContext';
+import NavDrawer from './user/NavDrawer';
 
 export default function NavBarAuth() {
-  const { user } = useAuth();
   return (
     <Navbar collapseOnSelect expand="lg" variant="dark">
       <Container>
@@ -27,12 +24,7 @@ export default function NavBarAuth() {
               <Nav.Link>Contribute</Nav.Link>
             </Link>
           </Nav>
-          <Link passHref href={`/user/profile/${user.displayName}`}>
-            <Button>
-              {user.displayName}
-            </Button>
-          </Link>
-          <Button onClick={signOut}>Sign Out</Button>
+          <NavDrawer />
         </Navbar.Collapse>
       </Container>
     </Navbar>

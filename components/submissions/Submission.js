@@ -39,8 +39,17 @@ export default function Submission({ submissionObj, afterUpdate }) {
       }}
     >
       <CardContent>
-        <Typography variant="h6" component="h2">{submissionObj.title}</Typography>
-        <Typography variant="body">{submissionObj.body}</Typography>
+        <Typography
+          variant="h6"
+          component="h2"
+        >
+          {submissionObj.title}
+        </Typography>
+        <Typography
+          variant="body"
+        >
+          {submissionObj.body}
+        </Typography>
       </CardContent>
       <>
         {userState ? <SubmissionCardActions submissionObj={submissionObj} cardAction={deletePost} /> : null}
