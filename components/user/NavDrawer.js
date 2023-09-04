@@ -55,12 +55,14 @@ export default function NavDrawer() {
           </Link>
         </ListItem>
         <ListItem key="MySubmissions" disablePadding>
-          <ListItemButton>
-            <ListItemIcon>
-              <Forum />
-            </ListItemIcon>
-            <ListItemText primary="My Submissions" />
-          </ListItemButton>
+          <Link passHref href="/user/submissions">
+            <ListItemButton>
+              <ListItemIcon>
+                <Forum />
+              </ListItemIcon>
+              <ListItemText primary="My Submissions" />
+            </ListItemButton>
+          </Link>
         </ListItem>
         <ListItem key="MyCommunities" disablePadding>
           <ListItemButton>
