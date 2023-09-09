@@ -13,17 +13,6 @@ const getSingleCommunity = async (id) => {
   return community.data;
 };
 
-const getMultiCommunities = async (...idArray) => {
-  const communityArray = [];
-  idArray.forEach((id) => {
-    getSingleCommunity(id)
-      .then((community) => {
-        communityArray.push(community);
-      });
-  });
-  return communityArray;
-};
-
 const getCommunitySubmissions = async (id) => {
   const communitySubmissions = await axios.get(`${greenhornEndpoint}/submissions.json?orderBy="communityId"&equalTo="${id}"`);
   return Object.values(communitySubmissions.data);
@@ -53,7 +42,6 @@ const getFilteredCommunities = async (callback, ...params) => {
 export {
   getAllCommunities,
   getSingleCommunity,
-  getMultiCommunities,
   getCommunitySubmissions,
   createCommunity,
   updateCommunity,

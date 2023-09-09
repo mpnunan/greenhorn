@@ -1,20 +1,11 @@
 import axios from 'axios';
 import { clientCredentials } from '../utils/client';
-import { getSingleCommunity } from './communityData';
 
 const greenhornEndpoint = clientCredentials.databaseURL;
 
 const getUserCommunities = async (userId) => {
-  const userCommunityArray = [];
   const userCommunities = await axios.get(`${greenhornEndpoint}/userCommunities.json?orderBy="userId"&equalTo="${userId}"`);
-  const userCommunityIdArray = Object.values(userCommunities.data);
-  userCommunityIdArray.forEach((userCommunity) => {
-    getSingleCommunity(userCommunity.communityId)
-      .then((community) => {
-        userCommunityArray.push(community);
-      });
-  });
-  return userCommunityArray;
+  return Object.values(userCommunities.data);
 };
 
 const getSingleUserCommunity = async (id) => {
@@ -23,28 +14,13 @@ const getSingleUserCommunity = async (id) => {
 };
 
 const getCommunityUserCommunities = async (communityId) => {
-  const communityUserCommunities = await axios.get(`${greenhornEndpoint}/userCommunities.json?orderBy="communityId"&equalTo="${communityId}"`);
-  return Object.values(communityUserCommunities.data);
+  const communityUsers = await axios.get(`${greenhornEndpoint}/userCommunities.json?orderBy="communityId"&equalTo="${communityId}"`);
+  return Object.values(communityUsers.data);
 };
 
-const getCommunityMembers = async (communityId) => {
-  const communityMembers = [];
-  const userCommunityArray = await getCommunityUserCommunities(communityId);
-  userCommunityArray.forEach((userCommunity) => {
-    communityMembers.push(userCommunity.userId);
-  });
-  return communityMembers;
-};
-
-const getCommunityAdmins = async (communityId) => {
-  const communityAdmins = [];
-  const communityMembers = await getCommunityMembers(communityId);
-  communityMembers.forEach((member) => {
-    if (member.isAdmin === true) {
-      communityAdmins.push(member);
-    }
-  });
-  return communityAdmins;
+const getAllCommunityAdmins = async () => {
+  const allCommunityAdmins = await axios.get(`${greenhornEndpoint}/userCommunities.json?orderBy="isAdmin"&equalTo=true`);
+  return Object.values(allCommunityAdmins.data);
 };
 
 const createUserCommunity = async (payload) => {
@@ -65,8 +41,8 @@ const deleteUserCommunity = async (id) => {
 export {
   getUserCommunities,
   getSingleUserCommunity,
-  getCommunityMembers,
-  getCommunityAdmins,
+  getCommunityUserCommunities,
+  getAllCommunityAdmins,
   createUserCommunity,
   updateUserCommunity,
   deleteUserCommunity,

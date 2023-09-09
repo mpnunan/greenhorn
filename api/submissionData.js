@@ -13,8 +13,8 @@ const getAllRequests = async () => {
   return Object.values(requests.data);
 };
 
-const getUserSubmissions = async (id) => {
-  const userSubmissions = await axios.get(`${greenhornEndpoint}/submissions.json?orderBy="submittedById"&equalTo="${id}"`);
+const getUserSubmissions = async (userId) => {
+  const userSubmissions = await axios.get(`${greenhornEndpoint}/submissions.json?orderBy="submittedById"&equalTo="${userId}"`);
   return Object.values(userSubmissions.data);
 };
 
