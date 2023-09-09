@@ -18,7 +18,7 @@ const getUserCommunities = async (userId) => {
 };
 
 const getSingleUserCommunity = async (id) => {
-  const userCommunity = await axios.get(`${greenhornEndpoint}/userCommunities/$${id}.json`);
+  const userCommunity = await axios.get(`${greenhornEndpoint}/userCommunities/${id}.json`);
   return userCommunity.data;
 };
 
@@ -47,9 +47,27 @@ const getCommunityAdmins = async (communityId) => {
   return communityAdmins;
 };
 
+const createUserCommunity = async (payload) => {
+  const userCommunity = await axios.post(`${greenhornEndpoint}/userCommunities.json`, payload);
+  return userCommunity.data;
+};
+
+const updateUserCommunity = async (payload) => {
+  const revisedUserCommunity = await axios.patch(`${greenhornEndpoint}/userCommunities/${payload.id}.json`, payload);
+  return revisedUserCommunity.data;
+};
+
+const deleteUserCommunity = async (id) => {
+  const formerUserCommunity = await axios.delete(`${greenhornEndpoint}/userCommunities/${id}.json`);
+  return formerUserCommunity.data;
+};
+
 export {
   getUserCommunities,
   getSingleUserCommunity,
   getCommunityMembers,
   getCommunityAdmins,
+  createUserCommunity,
+  updateUserCommunity,
+  deleteUserCommunity,
 };

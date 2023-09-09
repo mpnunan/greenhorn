@@ -30,18 +30,18 @@ const getCommunitySubmissions = async (id) => {
 };
 
 const createCommunity = async (payload) => {
-  const newCommunity = await axios.post(`${greenhornEndpoint}/submissions.json`, payload);
+  const newCommunity = await axios.post(`${greenhornEndpoint}/communities.json`, payload);
   return newCommunity.data;
 };
 
 const updateCommunity = async (payload) => {
-  const revisedCommunity = await axios.patch(`${greenhornEndpoint}/submissions/${payload.id}.json`, payload);
+  const revisedCommunity = await axios.patch(`${greenhornEndpoint}/communities/${payload.id}.json`, payload);
   return revisedCommunity.data;
 };
 
 const deleteCommunity = async (id) => {
-  const formerCommunity = await axios.delete(`${greenhornEndpoint}/submissions/${id}.json`);
-  return formerCommunity;
+  const formerCommunity = await axios.delete(`${greenhornEndpoint}/communities/${id}.json`);
+  return formerCommunity.data;
 };
 
 const getFilteredCommunities = async (callback, ...params) => {

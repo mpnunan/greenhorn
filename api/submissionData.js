@@ -30,12 +30,12 @@ const createSubmission = async (payload) => {
 
 const updateSubmission = async (payload) => {
   const revisedSubmission = await axios.patch(`${greenhornEndpoint}/submissions/${payload.id}.json`, payload);
-  return revisedSubmission;
+  return revisedSubmission.data;
 };
 
 const deleteSubmission = async (id) => {
   const formerSubmission = await axios.delete(`${greenhornEndpoint}/submissions/${id}.json`);
-  return formerSubmission;
+  return formerSubmission.data;
 };
 
 const getFilteredSubmissions = async (callback, ...params) => {
