@@ -33,12 +33,6 @@ const deleteCommunity = async (id) => {
   return formerCommunity.data;
 };
 
-const getFilteredCommunities = async (callback, ...params) => {
-  const data = await getAllCommunities();
-  const filterData = await callback(data, ...params);
-  return filterData;
-};
-
 export {
   getAllCommunities,
   getSingleCommunity,
@@ -46,5 +40,4 @@ export {
   createCommunity,
   updateCommunity,
   deleteCommunity,
-  getFilteredCommunities,
 };

@@ -38,12 +38,6 @@ const deleteSubmission = async (id) => {
   return formerSubmission.data;
 };
 
-const getFilteredSubmissions = async (callback, ...params) => {
-  const data = await getAllSubmissions();
-  const filterData = await callback(data, ...params);
-  return filterData;
-};
-
 export {
   getAllSubmissions,
   getAllRequests,
@@ -52,5 +46,4 @@ export {
   createSubmission,
   updateSubmission,
   deleteSubmission,
-  getFilteredSubmissions,
 };
