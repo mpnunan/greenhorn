@@ -8,6 +8,11 @@ const getUserSaved = async (userId) => {
   return Object.values(userSaved.data);
 };
 
+const getPostSaved = async (id) => {
+  const postSaved = await axios.get(`${greenhornEndpoint}/userSaved.json?orderBy="submissionId"&equalTo="${id}"`);
+  return Object.values(postSaved.data);
+};
+
 const getSingleUserSaved = async (id) => {
   const userSaved = await axios.get(`${greenhornEndpoint}/userSaved/${id}.json`);
   return userSaved.data;
@@ -30,6 +35,7 @@ const deleteUserSaved = async (id) => {
 
 export {
   getUserSaved,
+  getPostSaved,
   getSingleUserSaved,
   createUserSaved,
   updateUserSaved,
