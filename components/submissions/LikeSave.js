@@ -83,6 +83,7 @@ export default function LikeSave({ submissionId }) {
   const handleLike = () => {
     setLiked(false);
     if (!liked) {
+      setLiked(true);
       createLike();
     } else deleteUserLiked(likeId).then(() => userInteractions());
   };
@@ -90,6 +91,7 @@ export default function LikeSave({ submissionId }) {
   const handleSave = () => {
     setSaved(false);
     if (!saved) {
+      setSaved(true);
       createSave();
     } else deleteUserSaved(saveId).then(() => userInteractions());
   };
@@ -107,14 +109,17 @@ export default function LikeSave({ submissionId }) {
   }, [saves]);
 
   return (
-    <div>
-      <Checkbox
-        {...label}
-        icon={<FavoriteBorder />}
-        checkedIcon={<Favorite />}
-        checked={liked}
-        onChange={(handleLike)}
-      />
+    <div className="likeSaveContainer">
+      <div>
+        {likes.length}
+        <Checkbox
+          {...label}
+          icon={<FavoriteBorder />}
+          checkedIcon={<Favorite />}
+          checked={liked}
+          onChange={(handleLike)}
+        />
+      </div>
       <Checkbox
         {...label}
         icon={<BookmarkBorderIcon />}
