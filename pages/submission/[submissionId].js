@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Submission from '../../components/submissions/Submission';
 import { getSingleSubmission } from '../../api/submissionData';
+import NewComment from '../../components/submissions/NewComment';
 
 export default function SubmissionDetails() {
   const router = useRouter();
@@ -24,6 +25,9 @@ export default function SubmissionDetails() {
   }, []);
 
   return (
-    <Submission key={singleSubmission.id} submissionObj={singleSubmission} afterUpdate={detailsPageUpdate} />
+    <section id="submissionPage">
+      <Submission key={singleSubmission.id} submissionObj={singleSubmission} afterUpdate={detailsPageUpdate} />
+      <NewComment submissionId={singleSubmission.id} afterSubmit={detailsPageUpdate} />
+    </section>
   );
 }

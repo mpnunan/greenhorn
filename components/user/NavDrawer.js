@@ -16,6 +16,7 @@ import {
   Forum,
   People,
 } from '@mui/icons-material';
+import { Avatar } from '@mui/material';
 import { signOut } from '../../utils/auth';
 import { useAuth } from '../../utils/context/authContext';
 
@@ -48,7 +49,7 @@ export default function NavDrawer() {
           <Link passHref href={`/user/profile/${user.displayName}`}>
             <ListItemButton>
               <ListItemIcon>
-                <AccountBox />
+                {user.photoURL ? <Avatar src={user.photoURL} /> : <AccountBox /> }
               </ListItemIcon>
               <ListItemText primary="My Profile" />
             </ListItemButton>

@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import Link from 'next/link';
 import {
   Card,
   CardContent,
+  IconButton,
   Typography,
 } from '@mui/material';
+import { Forum } from '@mui/icons-material';
 import { useAuth } from '../../utils/context/authContext';
 import SubmissionCardActions from './SubmissionCardActions';
 import { deleteSubmission } from '../../api/submissionData';
@@ -59,6 +62,11 @@ export default function Submission({ submissionObj, afterUpdate }) {
       <>
         {userRequestState ? <RequestActions /> : null}
       </>
+      <Link passHref href={`/submission/${submissionObj.id}`}>
+        <IconButton>
+          <Forum />
+        </IconButton>
+      </Link>
     </Card>
   );
 }
