@@ -13,8 +13,8 @@ const getAllRequests = async () => {
   return Object.values(requests.data);
 };
 
-const getUserSubmissions = async (id) => {
-  const userSubmissions = await axios.get(`${greenhornEndpoint}/submissions.json?orderBy="submittedById"&equalTo="${id}"`);
+const getUserSubmissions = async (userId) => {
+  const userSubmissions = await axios.get(`${greenhornEndpoint}/submissions.json?orderBy="submittedById"&equalTo="${userId}"`);
   return Object.values(userSubmissions.data);
 };
 
@@ -30,18 +30,12 @@ const createSubmission = async (payload) => {
 
 const updateSubmission = async (payload) => {
   const revisedSubmission = await axios.patch(`${greenhornEndpoint}/submissions/${payload.id}.json`, payload);
-  return revisedSubmission;
+  return revisedSubmission.data;
 };
 
 const deleteSubmission = async (id) => {
   const formerSubmission = await axios.delete(`${greenhornEndpoint}/submissions/${id}.json`);
-  return formerSubmission;
-};
-
-const getFilteredSubmissions = async (callback, ...params) => {
-  const data = await getAllSubmissions();
-  const filterData = await callback(data, ...params);
-  return filterData;
+  return formerSubmission.data;
 };
 
 export {
@@ -52,5 +46,4 @@ export {
   createSubmission,
   updateSubmission,
   deleteSubmission,
-  getFilteredSubmissions,
 };
