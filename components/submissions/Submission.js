@@ -9,6 +9,7 @@ import { useAuth } from '../../utils/context/authContext';
 import SubmissionCardActions from './SubmissionCardActions';
 import { deleteSubmission } from '../../api/submissionData';
 import RequestActions from './RequestActions';
+import LikeSave from './LikeSave';
 
 export default function Submission({ submissionObj, afterUpdate }) {
   const { user } = useAuth();
@@ -39,6 +40,7 @@ export default function Submission({ submissionObj, afterUpdate }) {
       }}
     >
       <CardContent>
+        <LikeSave submissionId={submissionObj.id} />
         <Typography
           variant="h6"
           component="h2"

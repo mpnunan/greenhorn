@@ -36,8 +36,6 @@ export default function LikeSave({ submissionId }) {
       if (like.userId === user.uid) {
         setLiked(true);
         setLikeId(like.id);
-      } else {
-        setLiked(false);
       }
     });
   };
@@ -63,7 +61,7 @@ export default function LikeSave({ submissionId }) {
   };
 
   const createLike = () => {
-    const payload = { submissionId: { submissionId }, userId: user.uid };
+    const payload = { submissionId, userId: user.uid };
     createUserLiked(payload).then(({ name }) => {
       const patchPayload = { id: name };
       updateUserLiked(patchPayload).then(() => {
@@ -73,7 +71,7 @@ export default function LikeSave({ submissionId }) {
   };
 
   const createSave = () => {
-    const payload = { submissionId: { submissionId }, userId: user.uid };
+    const payload = { submissionId, userId: user.uid };
     createUserSaved(payload).then(({ name }) => {
       const patchPayload = { id: name };
       updateUserSaved(patchPayload).then(() => {
@@ -83,15 +81,17 @@ export default function LikeSave({ submissionId }) {
   };
 
   const handleLike = () => {
-    if (liked) {
-      deleteUserLiked(likeId);
-    } else createLike();
+    setLiked(false);
+    if (!liked) {
+      createLike();
+    } else deleteUserLiked(likeId).then(() => userInteractions());
   };
 
   const handleSave = () => {
-    if (saved) {
-      deleteUserSaved(saveId);
-    } else createSave();
+    setSaved(false);
+    if (!saved) {
+      createSave();
+    } else deleteUserSaved(saveId).then(() => userInteractions());
   };
 
   useEffect(() => {

@@ -9,7 +9,7 @@ const getUserLiked = async (userId) => {
 };
 
 const getPostLiked = async (id) => {
-  const postLiked = await axios.get(`${greenhornEndpoint}/userSaved.json?orderBy="submissionId"&equalTo="${id}"`);
+  const postLiked = await axios.get(`${greenhornEndpoint}/userLiked.json?orderBy="submissionId"&equalTo="${id}"`);
   return Object.values(postLiked.data);
 };
 
