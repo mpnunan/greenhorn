@@ -31,7 +31,7 @@ export default function LikeSave({ submissionId }) {
   const [saveId, setSaveId] = useState('');
   const { user } = useAuth();
 
-  const checkLike = (array) => {
+  const checkLiked = (array) => {
     array.forEach((like) => {
       if (like.userId === user.uid) {
         setLiked(true);
@@ -51,9 +51,9 @@ export default function LikeSave({ submissionId }) {
     });
   };
 
-  const userInteractions = async () => {
+  const userInteractions = async (id) => {
     await Promise.all([
-      getPostLiked(submissionId), getPostSaved(submissionId),
+      getPostLiked(id), getPostSaved(id),
     ]).then(([likeArray, saveArray]) => {
       setLikes(likeArray);
       setSaves(saveArray);
@@ -65,7 +65,7 @@ export default function LikeSave({ submissionId }) {
     createUserLiked(payload).then(({ name }) => {
       const patchPayload = { id: name };
       updateUserLiked(patchPayload).then(() => {
-        userInteractions();
+        userInteractions(submissionId);
       });
     });
   };
@@ -75,7 +75,7 @@ export default function LikeSave({ submissionId }) {
     createUserSaved(payload).then(({ name }) => {
       const patchPayload = { id: name };
       updateUserSaved(patchPayload).then(() => {
-        userInteractions();
+        userInteractions(submissionId);
       });
     });
   };
@@ -85,7 +85,7 @@ export default function LikeSave({ submissionId }) {
     if (!liked) {
       setLiked(true);
       createLike();
-    } else deleteUserLiked(likeId).then(() => userInteractions());
+    } else deleteUserLiked(likeId).then(() => userInteractions(submissionId));
   };
 
   const handleSave = () => {
@@ -93,19 +93,34 @@ export default function LikeSave({ submissionId }) {
     if (!saved) {
       setSaved(true);
       createSave();
-    } else deleteUserSaved(saveId).then(() => userInteractions());
+    } else deleteUserSaved(saveId).then(() => userInteractions(submissionId));
   };
 
   useEffect(() => {
-    userInteractions();
-  }, []);
+    userInteractions(submissionId);
+    return ((error) => {
+      if (error) {
+        Promise.reject(error);
+      }
+    });
+  }, [submissionId]);
 
   useEffect(() => {
-    checkLike(likes);
+    checkLiked(likes);
+    return ((error) => {
+      if (error) {
+        Promise.reject(error);
+      }
+    });
   }, [likes]);
 
   useEffect(() => {
     checkSaved(saves);
+    return ((error) => {
+      if (error) {
+        Promise.reject(error);
+      }
+    });
   }, [saves]);
 
   return (
@@ -132,5 +147,9 @@ export default function LikeSave({ submissionId }) {
 }
 
 LikeSave.propTypes = {
-  submissionId: PropTypes.string.isRequired,
+  submissionId: PropTypes.string,
+};
+
+LikeSave.defaultProps = {
+  submissionId: '',
 };

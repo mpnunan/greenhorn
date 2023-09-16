@@ -74,12 +74,14 @@ export default function NavDrawer() {
           </ListItemButton>
         </ListItem>
         <ListItem key="MySavedPosts" disablePadding>
-          <ListItemButton>
-            <ListItemIcon>
-              <DynamicFeed />
-            </ListItemIcon>
-            <ListItemText primary="My Saved Posts" />
-          </ListItemButton>
+          <Link passHref href="/user/savedSubmissions">
+            <ListItemButton>
+              <ListItemIcon>
+                <DynamicFeed />
+              </ListItemIcon>
+              <ListItemText primary="My Saved Posts" />
+            </ListItemButton>
+          </Link>
         </ListItem>
       </List>
       <Divider />

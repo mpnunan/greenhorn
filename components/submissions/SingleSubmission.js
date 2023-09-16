@@ -35,10 +35,9 @@ export default function Submission({ submissionObj, afterUpdate }) {
 
   return (
     <Card
-      className="submissionElement"
-      raised
+      className="singleSubmission"
       sx={{
-        width: 300,
+        width: '100%',
         height: 'fit-content',
 
       }}
