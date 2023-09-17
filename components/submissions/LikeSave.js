@@ -22,7 +22,7 @@ import {
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
-export default function LikeSave({ submissionId }) {
+export default function LikeSave({ submissionObj }) {
   const [likes, setLikes] = useState([]);
   const [saves, setSaves] = useState([]);
   const [liked, setLiked] = useState(false);
@@ -31,7 +31,7 @@ export default function LikeSave({ submissionId }) {
   const [saveId, setSaveId] = useState('');
   const { user } = useAuth();
 
-  const checkLike = (array) => {
+  const checkLiked = (array) => {
     array.forEach((like) => {
       if (like.userId === user.uid) {
         setLiked(true);
@@ -51,9 +51,9 @@ export default function LikeSave({ submissionId }) {
     });
   };
 
-  const userInteractions = async () => {
+  const userInteractions = async (id) => {
     await Promise.all([
-      getPostLiked(submissionId), getPostSaved(submissionId),
+      getPostLiked(id), getPostSaved(id),
     ]).then(([likeArray, saveArray]) => {
       setLikes(likeArray);
       setSaves(saveArray);
@@ -61,21 +61,21 @@ export default function LikeSave({ submissionId }) {
   };
 
   const createLike = () => {
-    const payload = { submissionId, userId: user.uid };
+    const payload = { submissionId: submissionObj.id, userId: user.uid };
     createUserLiked(payload).then(({ name }) => {
       const patchPayload = { id: name };
       updateUserLiked(patchPayload).then(() => {
-        userInteractions();
+        userInteractions(submissionObj.id);
       });
     });
   };
 
   const createSave = () => {
-    const payload = { submissionId, userId: user.uid };
+    const payload = { submissionObj, submissionId: submissionObj.id, userId: user.uid };
     createUserSaved(payload).then(({ name }) => {
       const patchPayload = { id: name };
       updateUserSaved(patchPayload).then(() => {
-        userInteractions();
+        userInteractions(submissionObj.id);
       });
     });
   };
@@ -85,7 +85,7 @@ export default function LikeSave({ submissionId }) {
     if (!liked) {
       setLiked(true);
       createLike();
-    } else deleteUserLiked(likeId).then(() => userInteractions());
+    } else deleteUserLiked(likeId).then(() => userInteractions(submissionObj.id));
   };
 
   const handleSave = () => {
@@ -93,19 +93,34 @@ export default function LikeSave({ submissionId }) {
     if (!saved) {
       setSaved(true);
       createSave();
-    } else deleteUserSaved(saveId).then(() => userInteractions());
+    } else deleteUserSaved(saveId).then(() => userInteractions(submissionObj.id));
   };
 
   useEffect(() => {
-    userInteractions();
-  }, []);
+    userInteractions(submissionObj.id);
+    return ((error) => {
+      if (error) {
+        Promise.reject(error);
+      }
+    });
+  }, [submissionObj.id]);
 
   useEffect(() => {
-    checkLike(likes);
+    checkLiked(likes);
+    return ((error) => {
+      if (error) {
+        Promise.reject(error);
+      }
+    });
   }, [likes]);
 
   useEffect(() => {
     checkSaved(saves);
+    return ((error) => {
+      if (error) {
+        Promise.reject(error);
+      }
+    });
   }, [saves]);
 
   return (
@@ -132,5 +147,11 @@ export default function LikeSave({ submissionId }) {
 }
 
 LikeSave.propTypes = {
-  submissionId: PropTypes.string.isRequired,
+  submissionObj: PropTypes.shape({
+    id: PropTypes.string,
+  }),
+};
+
+LikeSave.defaultProps = {
+  submissionObj: {},
 };

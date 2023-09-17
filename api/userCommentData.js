@@ -9,7 +9,7 @@ const getUserComments = async (userId) => {
 };
 
 const getPostComments = async (id) => {
-  const postComments = await axios.get(`${greenhornEndpoint}/userSaved.json?orderBy="submissionId"&equalTo="${id}"`);
+  const postComments = await axios.get(`${greenhornEndpoint}/userComments.json?orderBy="submissionId"&equalTo="${id}"`);
   return Object.values(postComments.data);
 };
 
