@@ -44,7 +44,7 @@ export default function Submission({ submissionObj, afterUpdate }) {
       }}
     >
       <CardContent>
-        <LikeSave submissionId={submissionObj.id} />
+        <LikeSave submissionObj={submissionObj} />
         <Typography
           variant="h6"
           component="h2"
