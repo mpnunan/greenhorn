@@ -21,7 +21,7 @@ export default function SubmissionDetails() {
 
   useEffect(() => {
     submissionDetails();
-  }, [{}]);
+  }, []);
 
   return (
     <main>
