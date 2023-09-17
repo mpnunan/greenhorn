@@ -18,7 +18,7 @@ export default function CommentSection({ submissionId }) {
   return (
     <section className="commentSection">
       {comments.map((comment) => (
-        <Comment key={comment.id} commentObj={comment} />
+        <Comment key={comment.id} commentObj={comment} afterUpdate={submissionComments} />
       ))}
     </section>
   );
