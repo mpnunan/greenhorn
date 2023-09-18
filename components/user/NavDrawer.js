@@ -102,14 +102,14 @@ export default function NavDrawer() {
 
   return (
     <div>
-      <React.Fragment key="left">
-        <Button onClick={toggleDrawer('left', true)}>{user.displayName}</Button>
+      <React.Fragment key="right">
+        <Button onClick={toggleDrawer('right', true)}>{user.displayName}</Button>
         <Drawer
-          anchor="left"
-          open={state.left}
-          onClose={toggleDrawer('left', false)}
+          anchor="right"
+          open={state.right}
+          onClose={toggleDrawer('right', false)}
         >
-          {list('left')}
+          {list('right')}
         </Drawer>
       </React.Fragment>
     </div>
