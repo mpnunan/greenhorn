@@ -23,8 +23,8 @@ const createUserSaved = async (payload) => {
   return userSaved.data;
 };
 
-const updateUserSaved = async (payload) => {
-  const revisedUserSaved = await axios.patch(`${greenhornEndpoint}/userSaved/${payload.id}.json`, payload);
+const updateUserSaved = async (id, payload) => {
+  const revisedUserSaved = await axios.patch(`${greenhornEndpoint}/userSaved/${id}.json`, payload);
   return revisedUserSaved.data;
 };
 
