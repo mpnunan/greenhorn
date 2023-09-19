@@ -5,6 +5,7 @@ import {
   Navbar, Container, Nav,
 } from 'react-bootstrap';
 import NavDrawer from './user/NavDrawer';
+import CommunityButtonGroup from './communities/communityButtonGroup/CommunityButtonGroup';
 
 export default function NavBarAuth() {
   return (
@@ -24,6 +25,7 @@ export default function NavBarAuth() {
               <Nav.Link>Contribute</Nav.Link>
             </Link>
           </Nav>
+          <CommunityButtonGroup />
           <NavDrawer />
         </Navbar.Collapse>
       </Container>

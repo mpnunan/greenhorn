@@ -2,10 +2,8 @@ import { useEffect, useState } from 'react';
 import { Paper } from '@mui/material';
 import Submission from '../components/submissions/Submission';
 import { getAllSubmissions } from '../api/submissionData';
-import CommunityButtonGroup from '../components/communities/communityButtonGroup/CommunityButtonGroup';
 
 function Home() {
-  // const { user } = useAuth(); // TODO: COMMENT IN FOR AUTH
   const [submissions, setSubmissions] = useState([]);
 
   const getSubmissions = () => {
@@ -28,7 +26,6 @@ function Home() {
         <h1>
           greenhorn
         </h1>
-        <CommunityButtonGroup />
       </header>
       <section className="submissionSection">
         {submissions.map((submission) => (

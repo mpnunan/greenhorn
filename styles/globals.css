@@ -42,6 +42,12 @@ h1 {
   font-weight: 500;
 }
 
+.subscriptionContainer > h2 {
+  color: antiquewhite;
+  text-align: center;
+  font-weight: 500;
+}
+
 .profileCardContent {
   display: flex;
   flex-flow: column nowrap;

@@ -31,7 +31,8 @@ export default function NewComment({ submissionId, afterSubmit }) {
     }));
   };
 
-  const submitComment = () => {
+  const submitComment = (e) => {
+    e.preventDefault();
     const payload = {
       submissionId,
       userId: user.uid,
@@ -41,6 +42,7 @@ export default function NewComment({ submissionId, afterSubmit }) {
     createUserComment(payload).then(({ name }) => {
       const patchPayload = { id: name };
       updateUserComment(patchPayload).then(() => {
+        setUserInput(initialCommentState);
         afterSubmit();
       });
     });

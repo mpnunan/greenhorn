@@ -66,12 +66,14 @@ export default function NavDrawer() {
           </Link>
         </ListItem>
         <ListItem key="MyCommunities" disablePadding>
-          <ListItemButton>
-            <ListItemIcon>
-              <People />
-            </ListItemIcon>
-            <ListItemText primary="My Communities" />
-          </ListItemButton>
+          <Link passHref href="/user/myCommunities">
+            <ListItemButton>
+              <ListItemIcon>
+                <People />
+              </ListItemIcon>
+              <ListItemText primary="My Communities" />
+            </ListItemButton>
+          </Link>
         </ListItem>
         <ListItem key="MySavedPosts" disablePadding>
           <Link passHref href="/user/savedSubmissions">
@@ -102,14 +104,14 @@ export default function NavDrawer() {
 
   return (
     <div>
-      <React.Fragment key="left">
-        <Button onClick={toggleDrawer('left', true)}>{user.displayName}</Button>
+      <React.Fragment key="right">
+        <Button onClick={toggleDrawer('right', true)}>{user.displayName}</Button>
         <Drawer
-          anchor="left"
-          open={state.left}
-          onClose={toggleDrawer('left', false)}
+          anchor="right"
+          open={state.right}
+          onClose={toggleDrawer('right', false)}
         >
-          {list('left')}
+          {list('right')}
         </Drawer>
       </React.Fragment>
     </div>
