@@ -20,8 +20,6 @@ import {
   updateUserSaved,
 } from '../../api/userSavedData';
 
-const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
-
 export default function LikeSave({ submissionObj }) {
   const [likes, setLikes] = useState([]);
   const [saves, setSaves] = useState([]);
@@ -36,6 +34,8 @@ export default function LikeSave({ submissionObj }) {
       if (like.userId === user.uid) {
         setLiked(true);
         setLikeId(like.id);
+      } else {
+        setLiked(false);
       }
     });
   };
@@ -128,7 +128,7 @@ export default function LikeSave({ submissionObj }) {
       <div>
         {likes.length}
         <Checkbox
-          {...label}
+          label={{ 'aria-label': 'Like Button' }}
           icon={<FavoriteBorder />}
           checkedIcon={<Favorite />}
           checked={liked}
@@ -136,7 +136,7 @@ export default function LikeSave({ submissionObj }) {
         />
       </div>
       <Checkbox
-        {...label}
+        label={{ 'aria-label': 'Save Button' }}
         icon={<BookmarkBorderIcon />}
         checkedIcon={<BookmarkIcon />}
         checked={saved}

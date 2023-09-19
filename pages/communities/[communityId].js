@@ -4,6 +4,7 @@ import { Paper } from '@mui/material';
 import { getSingleCommunity } from '../../api/communityData';
 import CommunitySubmissions from '../../components/communities/CommunitySubmissions';
 import CommunityButtonGroup from '../../components/communities/communityButtonGroup/CommunityButtonGroup';
+import Subscribe from '../../components/communities/Subscribe';
 
 export default function CommunityPage() {
   const [community, setCommunity] = useState({});
@@ -29,6 +30,7 @@ export default function CommunityPage() {
     >
       <header>
         <h1>{`Welcome to the ${community.name} page`}</h1>
+        <Subscribe communityObj={community} />
         <CommunityButtonGroup />
       </header>
       <CommunitySubmissions communityObj={community} />
