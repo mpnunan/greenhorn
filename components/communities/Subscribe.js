@@ -66,7 +66,7 @@ export default function Subscribe({ communityObj }) {
 
   return (
     <div className="subscriptionContainer">
-      {admin ? 'Welcome Home' : (
+      {admin ? <h2>Welcome Home, Boss</h2> : (
         <Checkbox
           label={{ 'aria-label': 'Subscribe Button' }}
           icon={<Button variant="outlined">Subscribe</Button>}

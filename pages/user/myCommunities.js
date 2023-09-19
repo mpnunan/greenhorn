@@ -8,7 +8,9 @@ export default function MyCommunities() {
   return (
     <main>
       <header>
-        {user.displayName}`&apos;s Communities
+        <h1>
+          {`${user.displayName}'s Communities`}
+        </h1>
       </header>
       <section>
         <Subscriptions />
