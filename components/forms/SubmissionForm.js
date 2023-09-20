@@ -12,7 +12,7 @@ import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import { useAuth } from '../../utils/context/authContext';
 import { createSubmission, getSingleSubmission, updateSubmission } from '../../api/submissionData';
-import { getPostSaved, updateUserSaved } from '../../api/userSavedData';
+import { getPostSaved, updateSavedData } from '../../api/userSavedData';
 
 const initialSubmissionState = {
   title: '',
@@ -57,7 +57,7 @@ export default function SubmissionForm({ submissionObj }) {
       getSingleSubmission(payload.id), getPostSaved(payload.id),
     ]).then(([submission, savedSubmissions]) => {
       savedSubmissions.forEach((savedSubmission) => {
-        updateUserSaved(savedSubmission.id, { submissionObj: submission });
+        updateSavedData(savedSubmission.id, { submissionObj: submission });
       });
     });
     return submissionData;
