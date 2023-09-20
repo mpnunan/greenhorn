@@ -36,6 +36,12 @@ header {
   align-items: center;;
 }
 
+header > h3 {
+  color: antiquewhite;
+  text-align: center;
+  font-weight: 300;
+}
+
 h1 {
   color: antiquewhite;
   text-align: center;

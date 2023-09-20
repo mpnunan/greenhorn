@@ -10,9 +10,9 @@ import {
 import { Forum } from '@mui/icons-material';
 import { useAuth } from '../../utils/context/authContext';
 import SubmissionCardActions from './SubmissionCardActions';
-import { deleteSubmission } from '../../api/submissionData';
 import RequestActions from './RequestActions';
 import LikeSave from './LikeSave';
+import deleteSubmissionData from '../../api/joinedSubmissionData';
 
 export default function Submission({ submissionObj, afterUpdate }) {
   const { user } = useAuth();
@@ -21,7 +21,7 @@ export default function Submission({ submissionObj, afterUpdate }) {
 
   const deletePost = () => {
     if (window.confirm(`Delete ${submissionObj.title}?`)) {
-      deleteSubmission(submissionObj.id).then(() => afterUpdate());
+      deleteSubmissionData(submissionObj.id).then(() => afterUpdate());
     }
   };
 

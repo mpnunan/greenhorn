@@ -28,6 +28,11 @@ const updateUserSaved = async (payload) => {
   return revisedUserSaved.data;
 };
 
+const updateSavedData = async (id, payload) => {
+  const revisedUserSaved = await axios.patch(`${greenhornEndpoint}/userSaved/${id}.json`, payload);
+  return revisedUserSaved.data;
+};
+
 const deleteUserSaved = async (id) => {
   const formerUserSaved = await axios.delete(`${greenhornEndpoint}/userSaved/${id}.json`);
   return formerUserSaved.data;
@@ -39,5 +44,6 @@ export {
   getSingleUserSaved,
   createUserSaved,
   updateUserSaved,
+  updateSavedData,
   deleteUserSaved,
 };

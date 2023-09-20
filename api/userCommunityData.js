@@ -48,6 +48,11 @@ const updateUserCommunity = async (payload) => {
   return revisedUserCommunity.data;
 };
 
+const updateCommunityData = async (id, payload) => {
+  const revisedUserCommunity = await axios.patch(`${greenhornEndpoint}/userCommunities/${id}.json`, payload);
+  return revisedUserCommunity.data;
+};
+
 const deleteUserCommunity = async (id) => {
   const formerUserCommunity = await axios.delete(`${greenhornEndpoint}/userCommunities/${id}.json`);
   return formerUserCommunity.data;
@@ -61,5 +66,6 @@ export {
   getCommunityAdmins,
   createUserCommunity,
   updateUserCommunity,
+  updateCommunityData,
   deleteUserCommunity,
 };

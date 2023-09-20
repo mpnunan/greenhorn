@@ -11,6 +11,7 @@ import ListItemText from '@mui/material/ListItemText';
 import Link from 'next/link';
 import {
   AccountBox,
+  Construction,
   DynamicFeed,
   ExitToApp,
   Forum,
@@ -82,6 +83,20 @@ export default function NavDrawer() {
                 <DynamicFeed />
               </ListItemIcon>
               <ListItemText primary="My Saved Posts" />
+            </ListItemButton>
+          </Link>
+        </ListItem>
+        <Divider />
+      </List>
+      <Divider />
+      <List>
+        <ListItem key="CreatCommunity" disablePadding>
+          <Link passHref href="/communities/newCommunity">
+            <ListItemButton>
+              <ListItemIcon>
+                <Construction />
+              </ListItemIcon>
+              <ListItemText primary="Build a Community" />
             </ListItemButton>
           </Link>
         </ListItem>

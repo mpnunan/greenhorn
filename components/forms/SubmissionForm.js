@@ -11,7 +11,8 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import { useAuth } from '../../utils/context/authContext';
-import { createSubmission, updateSubmission } from '../../api/submissionData';
+import { createSubmission, getSingleSubmission, updateSubmission } from '../../api/submissionData';
+import { getPostSaved, updateSavedData } from '../../api/userSavedData';
 
 const initialSubmissionState = {
   title: '',
@@ -51,17 +52,28 @@ export default function SubmissionForm({ submissionObj }) {
     }));
   };
 
+  const updateSubmissionData = async (payload) => {
+    const submissionData = await Promise.all([
+      getSingleSubmission(payload.id), getPostSaved(payload.id),
+    ]).then(([submission, savedSubmissions]) => {
+      savedSubmissions.forEach((savedSubmission) => {
+        updateSavedData(savedSubmission.id, { submissionObj: submission });
+      });
+    });
+    return submissionData;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (submissionObj.id) {
-      updateSubmission(userInput).then(() => router.push(`/submission/${submissionObj.id}`));
+      updateSubmission(userInput)
+        .then(updateSubmissionData)
+        .then(() => router.push(`/submission/${submissionObj.id}`));
     } else {
       const payload = { ...userInput, submittedById: user.uid };
       createSubmission(payload).then(({ name }) => {
         const patchPayload = { id: name };
-        updateSubmission(patchPayload).then(() => {
-          router.push(`/communities/${userInput.communityId}`);
-        });
+        updateSubmission(patchPayload).then(() => { router.push(`/communities/${userInput.communityId}`); });
       });
     }
   };
