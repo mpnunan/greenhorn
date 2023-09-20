@@ -67,7 +67,7 @@ export default function SubmissionForm({ submissionObj }) {
     e.preventDefault();
     if (submissionObj.id) {
       updateSubmission(userInput)
-        .then(() => updateSubmissionData(submissionObj))
+        .then(updateSubmissionData)
         .then(() => router.push(`/submission/${submissionObj.id}`));
     } else {
       const payload = { ...userInput, submittedById: user.uid };

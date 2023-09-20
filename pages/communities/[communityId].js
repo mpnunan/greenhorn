@@ -28,8 +28,9 @@ export default function CommunityPage() {
       }}
     >
       <header>
-        <h1>{`Welcome to the ${community.name} page`}</h1>
+        <h1>{`The ${community.name} page`}</h1>
         <Subscribe communityObj={community} />
+        <h3>{`${community.description}`}</h3>
       </header>
       <CommunitySubmissions communityObj={community} />
     </Paper>
