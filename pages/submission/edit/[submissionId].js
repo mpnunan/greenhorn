@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { getSingleSubmission } from '../../../api/submissionData';
 import SubmissionForm from '../../../components/forms/SubmissionForm';
 
-export default function NewSubmission() {
+export default function UpdateSubmission() {
   const router = useRouter();
   const [submissionEdit, setSubmissionEdit] = useState({});
   const { submissionId } = router.query;

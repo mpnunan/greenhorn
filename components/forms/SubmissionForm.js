@@ -21,14 +21,28 @@ const initialSubmissionState = {
   request: false,
 };
 
-export default function SubmissionForm({ submissionObj }) {
+const initialRequestState = null;
+
+export default function SubmissionForm({ submissionObj, requestObj }) {
   const router = useRouter();
   const { user } = useAuth();
   const [userInput, setUserInput] = useState(initialSubmissionState);
+  const [requestData, setRequestData] = useState(initialRequestState);
 
   useEffect(() => {
     if (submissionObj.id) setUserInput(submissionObj);
   }, [submissionObj]);
+
+  useEffect(() => {
+    if (requestObj.id) {
+      setRequestData({
+        communityId: requestObj.communityId,
+        title: requestObj.title,
+        requestId: requestObj.id,
+        requestObj,
+      });
+    }
+  }, [requestObj]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -70,10 +84,15 @@ export default function SubmissionForm({ submissionObj }) {
         .then(updateSubmissionData)
         .then(() => router.push(`/submission/${submissionObj.id}`));
     } else {
-      const payload = { ...userInput, submittedById: user.uid };
+      const payload = { ...userInput, ...requestData, submittedById: user.uid };
       createSubmission(payload).then(({ name }) => {
         const patchPayload = { id: name };
-        updateSubmission(patchPayload).then(() => { router.push(`/communities/${userInput.communityId}`); });
+        updateSubmission(patchPayload)
+          .then(() => {
+            if (requestObj.id) {
+              router.push(`/communities/${requestObj.communityId}`);
+            } else router.push(`/communities/${userInput.communityId}`);
+          });
       });
     }
   };
@@ -99,6 +118,7 @@ export default function SubmissionForm({ submissionObj }) {
         role="checkbox"
         checked={userInput.request}
         onChange={handleToggle}
+        disabled={Boolean(requestData)}
         aria-label="Toggle Submission or Request Toggle"
         sx={{
           alignSelf: 'flex-end',
@@ -108,7 +128,7 @@ export default function SubmissionForm({ submissionObj }) {
       />
       <ToggleButtonGroup
         name="communityName"
-        value={userInput.communityId}
+        value={{ ...userInput, ...requestObj }.communityId}
         exclusive
         required
         onChange={handleSelect}
@@ -123,18 +143,21 @@ export default function SubmissionForm({ submissionObj }) {
         <ToggleButton
           name="-Ncn2prJ6SJ1GmWyG9TC"
           value="-Ncn2prJ6SJ1GmWyG9TC"
+          disabled={Boolean(requestData)}
         >
           Woodworking
         </ToggleButton>
         <ToggleButton
           name="-Ncn3FuIbACyhYyleOHK"
           value="-Ncn3FuIbACyhYyleOHK"
+          disabled={Boolean(requestData)}
         >
           Metalworking
         </ToggleButton>
         <ToggleButton
           name="-Ncn2W_RM7TXaYiB6LES"
           value="-Ncn2W_RM7TXaYiB6LES"
+          disabled={Boolean(requestData)}
         >
           Coatings
         </ToggleButton>
@@ -143,7 +166,7 @@ export default function SubmissionForm({ submissionObj }) {
         id="submissionTitle"
         label="Title"
         name="title"
-        value={userInput.title}
+        value={{ ...userInput, ...requestObj }.title}
         required
         onChange={handleChange}
         multiline
@@ -182,9 +205,25 @@ SubmissionForm.propTypes = {
     communityId: PropTypes.string,
     request: PropTypes.bool,
     id: PropTypes.string,
+    requestId: PropTypes.string,
+    requestObj: PropTypes.shape({
+      title: PropTypes.string,
+      body: PropTypes.string,
+      communityId: PropTypes.string,
+      request: PropTypes.bool,
+      id: PropTypes.string,
+    }),
+  }),
+  requestObj: PropTypes.shape({
+    title: PropTypes.string,
+    body: PropTypes.string,
+    communityId: PropTypes.string,
+    request: PropTypes.bool,
+    id: PropTypes.string,
   }),
 };
 
 SubmissionForm.defaultProps = {
   submissionObj: initialSubmissionState,
+  requestObj: initialRequestState,
 };

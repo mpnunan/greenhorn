@@ -81,19 +81,23 @@ export default function LikeSave({ submissionObj }) {
   };
 
   const handleLike = () => {
-    setLiked(false);
     if (!liked) {
       setLiked(true);
       createLike();
-    } else deleteUserLiked(likeId).then(() => userInteractions(submissionObj.id));
+    } else {
+      setLiked(false);
+      deleteUserLiked(likeId).then(() => userInteractions(submissionObj.id));
+    }
   };
 
   const handleSave = () => {
-    setSaved(false);
     if (!saved) {
       setSaved(true);
       createSave();
-    } else deleteUserSaved(saveId).then(() => userInteractions(submissionObj.id));
+    } else {
+      setSaved(false);
+      deleteUserSaved(saveId).then(() => userInteractions(submissionObj.id));
+    }
   };
 
   useEffect(() => {

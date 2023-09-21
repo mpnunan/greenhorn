@@ -61,7 +61,7 @@ export default function Submission({ submissionObj, afterUpdate }) {
         {userState ? <SubmissionCardActions submissionObj={submissionObj} cardAction={deletePost} /> : null}
       </>
       <>
-        {userRequestState ? <RequestActions /> : null}
+        {userRequestState ? <RequestActions requestId={submissionObj.id} /> : null}
       </>
       <Link passHref href={`/submission/${submissionObj.id}`}>
         <IconButton>
