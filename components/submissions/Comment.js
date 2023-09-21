@@ -8,10 +8,6 @@ import PropTypes from 'prop-types';
 import { useAuth } from '../../utils/context/authContext';
 import { deleteUserComment } from '../../api/userCommentData';
 
-// const initialCommentState = {
-//   body: null,
-//   userName: null,
-// };
 export default function Comment({ commentObj, afterUpdate }) {
   const { user } = useAuth();
   const deleteComment = () => {

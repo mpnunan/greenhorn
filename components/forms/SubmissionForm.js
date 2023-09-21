@@ -21,7 +21,7 @@ const initialSubmissionState = {
   request: false,
 };
 
-const initialRequestState = null;
+const initialRequestState = {};
 
 export default function SubmissionForm({ submissionObj, requestObj }) {
   const router = useRouter();
@@ -41,7 +41,7 @@ export default function SubmissionForm({ submissionObj, requestObj }) {
         requestId: requestObj.id,
         requestObj,
       });
-    }
+    } else setRequestData(null);
   }, [requestObj]);
 
   const handleChange = (e) => {
