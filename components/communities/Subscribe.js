@@ -49,11 +49,13 @@ export default function Subscribe({ communityObj }) {
   };
 
   const handleSubscription = () => {
-    setSubscribed(false);
     if (!subscribed) {
       setSubscribed(true);
       createSubscription();
-    } else deleteUserCommunity(subscriptionId).then(() => communitySubscriptions(communityObj.id));
+    } else {
+      setSubscribed(false);
+      deleteUserCommunity(subscriptionId).then(() => communitySubscriptions(communityObj.id));
+    }
   };
 
   useEffect(() => {
