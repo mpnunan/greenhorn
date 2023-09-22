@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import {
+  Button,
   Card,
   CardContent,
   IconButton,
@@ -18,6 +19,7 @@ export default function Submission({ submissionObj, afterUpdate }) {
   const { user } = useAuth();
   const [userState, setUserState] = useState(false);
   const [userRequestState, setUserRequestState] = useState(false);
+  const [answer, setAnswer] = useState(false);
 
   const deletePost = () => {
     if (window.confirm(`Delete ${submissionObj.title}?`)) {
@@ -32,6 +34,10 @@ export default function Submission({ submissionObj, afterUpdate }) {
   useEffect(() => {
     if (submissionObj.request && user.uid !== submissionObj.submittedById) setUserRequestState(true);
   }, [user, submissionObj.submittedById, submissionObj.request]);
+
+  useEffect(() => {
+    if (submissionObj.requestId) setAnswer(true);
+  }, [submissionObj]);
 
   return (
     <Card
@@ -63,6 +69,9 @@ export default function Submission({ submissionObj, afterUpdate }) {
       <>
         {userRequestState ? <RequestActions requestId={submissionObj.id} /> : null}
       </>
+      <>
+        {answer ? <Link passHref href={`/requests/${submissionObj.requestId}`}><Button>See Question</Button></Link> : null}
+      </>
       <Link passHref href={`/submission/${submissionObj.id}`}>
         <IconButton>
           <Forum />
@@ -79,6 +88,7 @@ Submission.propTypes = {
     id: PropTypes.string,
     submittedById: PropTypes.string,
     request: PropTypes.bool,
+    requestId: PropTypes.string,
   }).isRequired,
   afterUpdate: PropTypes.func.isRequired,
 };

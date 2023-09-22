@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import { Paper } from '@mui/material';
 import Submission from '../components/submissions/Submission';
-import { getAllSubmissions } from '../api/submissionData';
+import { getOnlySubmissions } from '../api/submissionData';
 
 function Home() {
   const [submissions, setSubmissions] = useState([]);
 
   const getSubmissions = () => {
-    getAllSubmissions().then(setSubmissions);
+    getOnlySubmissions().then(setSubmissions);
   };
 
   useEffect(() => {

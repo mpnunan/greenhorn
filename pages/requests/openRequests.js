@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import { Paper } from '@mui/material';
-import { getAllRequests } from '../api/submissionData';
-import Submission from '../components/submissions/Submission';
+import Submission from '../../components/submissions/Submission';
+import { getOpenRequests } from '../../api/joinedRequestData';
 
 export default function Requests() {
   const [requests, setRequests] = useState([]);
 
   const getRequests = () => {
-    getAllRequests().then(setRequests);
+    getOpenRequests().then(setRequests);
   };
 
   useEffect(() => {
