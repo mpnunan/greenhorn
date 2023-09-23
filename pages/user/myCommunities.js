@@ -12,7 +12,7 @@ export default function MyCommunities() {
           {`${user.displayName}'s Communities`}
         </h1>
       </header>
-      <section>
+      <section className="userCommunities">
         <Subscriptions />
       </section>
     </main>
