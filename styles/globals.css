@@ -91,3 +91,10 @@ padding: 10px;
   padding: 40px;
   margin-top: 40px;
 }
+
+.userCommunities {
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+  margin-top: 40px;
+}
