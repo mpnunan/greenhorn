@@ -112,7 +112,7 @@ export default function SubmissionForm({ submissionObj, requestObj }) {
       }}
     >
       <FormControlLabel
-        control={<Switch />}
+        control={<Switch color="success" />}
         label="Request"
         name="request"
         role="checkbox"
@@ -191,6 +191,7 @@ export default function SubmissionForm({ submissionObj, requestObj }) {
       <Button
         type="submit"
         variant="outlined"
+        color="success"
       >
         Submit
       </Button>

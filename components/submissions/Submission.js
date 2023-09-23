@@ -8,7 +8,7 @@ import {
   IconButton,
   Typography,
 } from '@mui/material';
-import { Forum } from '@mui/icons-material';
+import { ChatBubbleOutline } from '@mui/icons-material';
 import { useAuth } from '../../utils/context/authContext';
 import SubmissionCardActions from './SubmissionCardActions';
 import RequestActions from './RequestActions';
@@ -72,14 +72,50 @@ export default function Submission({ submissionObj, afterUpdate }) {
       <>
         {userRequestState ? <RequestActions requestId={submissionObj.id} /> : null}
       </>
-      <>
-        {answer ? <Link passHref href={`/requests/${submissionObj.requestId}`}><Button>See Question</Button></Link> : null}
-      </>
-      <Link passHref href={`/submission/${submissionObj.id}`}>
-        <IconButton>
-          <Forum />
-        </IconButton>
-      </Link>
+      <CardContent
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+        }}
+      >
+        <Link passHref href={`/submission/${submissionObj.id}`}>
+          <IconButton
+            sx={{
+              ':hover': {
+                bgcolor: 'transparent',
+              },
+            }}
+          >
+            <ChatBubbleOutline
+              sx={{
+                ':hover': {
+                  color: 'rgba(5, 10, 5, 1)',
+                },
+              }}
+            />
+          </IconButton>
+        </Link>
+        <>
+          {answer
+            ? (
+              <Link passHref href={`/requests/${submissionObj.requestId}`}>
+                <Button
+                  sx={{
+                    color: 'rgba(0, 0, 0, 0.6)',
+                    ':hover': {
+                      color: 'rgba(5,60,5,.8)',
+                      border: '1px solid rgba(5, 60, 5, .8)',
+                      bgcolor: 'transparent',
+                    },
+                  }}
+                >
+                  See Question
+                </Button>
+              </Link>
+            )
+            : null}
+        </>
+      </CardContent>
     </Card>
   );
 }

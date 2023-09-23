@@ -27,10 +27,6 @@ a {
   box-sizing: border-box;
 }
 
-#logo {
-  color: rgb(5, 80, 5);
-}
-
 .MuiDrawer-paper {
   background-color: antiquewhite !important;
 }
@@ -89,4 +85,9 @@ padding: 10px;
 .likeSaveContainer {
   display: flex;
   justify-content: space-between;
+}
+
+.closedRequestPage {
+  padding: 40px;
+  margin-top: 40px;
 }

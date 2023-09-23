@@ -17,6 +17,13 @@ export default function NavBarAuth() {
             id="logo"
             variant="h2"
             component="h3"
+            sx={{
+              color: 'rgb(5, 100, 5)',
+              ':hover': {
+                cursor: 'pointer',
+                color: 'rgb(5, 160, 5)',
+              },
+            }}
           >greenhorn
           </Typography>
         </Link>

@@ -134,7 +134,7 @@ export default function LikeSave({ submissionObj }) {
         <Checkbox
           label={{ 'aria-label': 'Like Button' }}
           icon={<FavoriteBorder />}
-          checkedIcon={<Favorite />}
+          checkedIcon={<Favorite color="success" />}
           checked={liked}
           onChange={(handleLike)}
         />
@@ -142,7 +142,7 @@ export default function LikeSave({ submissionObj }) {
       <Checkbox
         label={{ 'aria-label': 'Save Button' }}
         icon={<BookmarkBorderIcon />}
-        checkedIcon={<BookmarkIcon />}
+        checkedIcon={<BookmarkIcon color="success" />}
         checked={saved}
         onChange={handleSave}
       />

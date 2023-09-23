@@ -10,9 +10,34 @@ export default function SubmissionCardActions({ submissionObj, cardAction }) {
       }}
     >
       <Link href={`/submission/edit/${submissionObj.id}`} passHref>
-        <Button>{submissionObj.request ? 'Update Request' : 'Update Post'}</Button>
+        <Button
+          sx={{
+            color: 'rgba(0, 0, 0, 0.6)',
+            margin: '4px 4px',
+            ':hover': {
+              color: 'rgba(5,60,5,.8)',
+              border: '1px solid rgba(5, 60, 5, .8)',
+              bgcolor: 'transparent',
+            },
+          }}
+        >
+          {submissionObj.request ? 'Update Request' : 'Update Post'}
+        </Button>
       </Link>
-      <Button onClick={cardAction}>{submissionObj.request ? 'Delete Request' : 'Delete Post'}</Button>
+      <Button
+        onClick={cardAction}
+        sx={{
+          color: 'rgba(0, 0, 0, 0.6)',
+          margin: '4px 4px',
+          ':hover': {
+            color: 'rgba(5,60,5,.8)',
+            border: '1px solid rgba(5, 60, 5, .8)',
+            bgcolor: 'transparent',
+          },
+        }}
+      >
+        {submissionObj.request ? 'Delete Request' : 'Delete Post'}
+      </Button>
     </CardActions>
   );
 }

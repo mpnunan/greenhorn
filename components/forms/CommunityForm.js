@@ -121,6 +121,7 @@ export default function CommunityForm({ communityObj }) {
       <Button
         type="submit"
         variant="outlined"
+        color="success"
       >
         Submit
       </Button>
