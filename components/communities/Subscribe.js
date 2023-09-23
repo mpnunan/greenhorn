@@ -71,8 +71,8 @@ export default function Subscribe({ communityObj }) {
       {admin ? <h2>Welcome Home, Boss</h2> : (
         <Checkbox
           label={{ 'aria-label': 'Subscribe Button' }}
-          icon={<Button variant="outlined">Subscribe</Button>}
-          checkedIcon={<Button variant="contained">Unsubscribe</Button>}
+          icon={<Button variant="outlined" color="success">Subscribe</Button>}
+          checkedIcon={<Button variant="contained" color="success">Unsubscribe</Button>}
           checked={subscribed}
           onChange={(handleSubscription)}
         />
