@@ -7,6 +7,14 @@ export default function CommunityButton({ communityObj, keyNumber }) {
     <Link href={`/communities/${communityObj.id}`} passHref>
       <Button
         key={keyNumber}
+        sx={{
+          color: 'antiquewhite',
+          borderColor: 'antiquewhite',
+          ':hover': {
+            color: 'rgb(5, 40, 5)',
+            bgcolor: 'antiquewhite',
+          },
+        }}
       >
         {communityObj.name}
       </Button>

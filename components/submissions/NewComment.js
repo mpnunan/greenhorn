@@ -79,7 +79,14 @@ export default function NewComment({ submissionId, afterSubmit }) {
         <Button
           type="submit"
           variant="outlined"
+          color="success"
           fullWidth
+          sx={{
+            ':hover': {
+              color: 'rgba(5,60,5,.8)',
+              bgcolor: '5, 80, 5, .4',
+            },
+          }}
         >
           Submit
         </Button>

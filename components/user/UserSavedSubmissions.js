@@ -17,7 +17,7 @@ export default function UserSavedSubmissions() {
   }, []);
 
   return (
-    <section className="savedSection">
+    <section className="submissionSection savedSection">
       {saved.map((save) => (
         <Submission key={save.submissionObj.id} submissionObj={save.submissionObj} afterUpdate={getSavedSubmissions} />
       ))}

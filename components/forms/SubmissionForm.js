@@ -106,13 +106,13 @@ export default function SubmissionForm({ submissionObj, requestObj }) {
         bgcolor: 'antiquewhite',
         border: '2px solid antiquewhite',
         borderRadius: '4px',
-        width: '80%',
+        width: '80vw',
         padding: '12px',
         marginTop: '24px',
       }}
     >
       <FormControlLabel
-        control={<Switch />}
+        control={<Switch color="success" />}
         label="Request"
         name="request"
         role="checkbox"
@@ -191,6 +191,7 @@ export default function SubmissionForm({ submissionObj, requestObj }) {
       <Button
         type="submit"
         variant="outlined"
+        color="success"
       >
         Submit
       </Button>

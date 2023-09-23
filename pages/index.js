@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
 import { Paper } from '@mui/material';
 import Submission from '../components/submissions/Submission';
-import { getAllSubmissions } from '../api/submissionData';
+import { getOnlySubmissions } from '../api/submissionData';
 
 function Home() {
   const [submissions, setSubmissions] = useState([]);
 
   const getSubmissions = () => {
-    getAllSubmissions().then(setSubmissions);
+    getOnlySubmissions().then(setSubmissions);
   };
 
   useEffect(() => {
@@ -17,9 +17,9 @@ function Home() {
   return (
     <Paper
       sx={{
-        bgcolor: 'rgb(5, 50, 5)',
+        bgcolor: 'rgba(5, 50, 5, .6)',
         width: '100%',
-        minHeight: 'fit-content',
+        height: '100%',
       }}
     >
       <header>

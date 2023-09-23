@@ -13,6 +13,11 @@ const getAllRequests = async () => {
   return Object.values(requests.data);
 };
 
+const getOnlySubmissions = async () => {
+  const onlySubmissions = await axios.get(`${greenhornEndpoint}/submissions.json?orderBy="request"&equalTo=false`);
+  return Object.values(onlySubmissions.data);
+};
+
 const getUserSubmissions = async (userId) => {
   const userSubmissions = await axios.get(`${greenhornEndpoint}/submissions.json?orderBy="submittedById"&equalTo="${userId}"`);
   return Object.values(userSubmissions.data);
@@ -41,6 +46,7 @@ const deleteSubmission = async (id) => {
 export {
   getAllSubmissions,
   getAllRequests,
+  getOnlySubmissions,
   getUserSubmissions,
   getSingleSubmission,
   createSubmission,
