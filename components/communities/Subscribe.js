@@ -75,6 +75,9 @@ export default function Subscribe({ communityObj }) {
           checkedIcon={<Button variant="contained" color="success" sx={{ color: 'antiquewhite', width: '160px' }}>Unsubscribe</Button>}
           checked={subscribed}
           onChange={(handleSubscription)}
+          sx={{
+            ':hover': { opacity: '.8' },
+          }}
         />
       )}
     </div>
