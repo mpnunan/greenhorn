@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
+import { Button } from '@mui/material';
 import { signIn } from '../utils/auth';
 
 function Signin() {
@@ -14,8 +14,8 @@ function Signin() {
       }}
     >
       <h1>Hi there!</h1>
-      <p>Click the button below to login!</p>
-      <Button type="button" size="lg" className="copy-btn" onClick={signIn}>
+
+      <Button type="button" variant="contained" color="success" sx={{ color: 'antiquewhite', opacity: '.8' }} className="copy-btn" onClick={signIn}>
         Sign In
       </Button>
     </div>
