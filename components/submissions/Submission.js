@@ -44,9 +44,12 @@ export default function Submission({ submissionObj, afterUpdate }) {
       className="submissionElement"
       raised
       sx={{
-        width: 300,
+        width: '100%',
         height: 'fit-content',
-
+        bgcolor: 'antiquewhite',
+        border: '4px solid rgb(5, 50, 5)',
+        borderRadius: '8px',
+        boxShadow: '-5px 5px 5px rgba(5, 50, 5)',
       }}
     >
       <CardContent>

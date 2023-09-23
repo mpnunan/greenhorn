@@ -40,7 +40,8 @@ export default function NavDrawer() {
 
   const list = (anchor) => (
     <Box
-      sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
+      id="drawerPaper"
+      sx={{ bgcolor: 'antiquewhite', width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
       role="presentation"
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
@@ -120,7 +121,18 @@ export default function NavDrawer() {
   return (
     <div>
       <React.Fragment key="right">
-        <Button onClick={toggleDrawer('right', true)}>{user.displayName}</Button>
+        <Button
+          sx={{
+            color: 'antiquewhite',
+            marginLeft: '20px',
+            ':hover': {
+              border: '1px solid antiquewhite',
+            },
+          }}
+          onClick={toggleDrawer('right', true)}
+        >
+          {user.displayName}
+        </Button>
         <Drawer
           anchor="right"
           open={state.right}

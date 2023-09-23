@@ -20,9 +20,9 @@ export default function UserSubmissions() {
   return (
     <Paper
       sx={{
-        bgcolor: 'rgb(5, 50, 5)',
+        bgcolor: 'rgba(5, 50, 5, .6)',
         width: '100%',
-        minHeight: 'fit-content',
+        height: '100%',
       }}
     >
       <header>

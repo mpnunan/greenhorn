@@ -17,9 +17,9 @@ export default function Requests() {
   return (
     <Paper
       sx={{
-        bgcolor: 'rgb(5, 50, 5)',
-        width: '80vw',
-        height: '80vh',
+        bgcolor: 'rgba(5, 50, 5, .6)',
+        width: '100%',
+        height: '100%',
       }}
     >
       <header>
@@ -27,7 +27,7 @@ export default function Requests() {
           Open Requests
         </h1>
       </header>
-      <section className="openRequests">
+      <section className="submissionSection openRequests">
         {requests.map((request) => (
           <Submission key={request.id} submissionObj={request} afterUpdate={getRequests} />
         ))}

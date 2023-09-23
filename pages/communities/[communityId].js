@@ -22,9 +22,9 @@ export default function CommunityPage() {
   return (
     <Paper
       sx={{
-        bgcolor: 'rgb(5, 50, 5)',
-        width: '80vw',
-        height: '80vh',
+        bgcolor: 'rgba(5, 50, 5, .6)',
+        width: '100%',
+        height: '100%',
       }}
     >
       <header>

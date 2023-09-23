@@ -20,7 +20,7 @@ export default function CommunitySubmissions({ communityObj }) {
   }, [communityObj.id]);
 
   return (
-    <section className="communityPageSubmissions">
+    <section className="submissionSection communityPageSubmissions">
       {communitySubmissions.map((communitySubmission) => (
         <Submission key={communitySubmission.id} submissionObj={communitySubmission} afterUpdate={updatePage} />
       ))}

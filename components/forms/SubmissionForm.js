@@ -106,7 +106,7 @@ export default function SubmissionForm({ submissionObj, requestObj }) {
         bgcolor: 'antiquewhite',
         border: '2px solid antiquewhite',
         borderRadius: '4px',
-        width: '80%',
+        width: '80vw',
         padding: '12px',
         marginTop: '24px',
       }}
