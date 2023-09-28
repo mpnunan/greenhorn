@@ -29,7 +29,7 @@ export default function CommunityPage() {
     >
       <header>
         <h1>{`The ${community.name} page`}</h1>
-        <Subscribe communityObj={community} />
+        <Subscribe communityObj={community} communityId={communityId} />
         <h3>{`${community.description}`}</h3>
       </header>
       <CommunitySubmissions communityObj={community} />

@@ -10,19 +10,20 @@ import {
 } from '../../api/userCommunityData';
 import { useAuth } from '../../utils/context/authContext';
 
-export default function Subscribe({ communityObj }) {
+export default function Subscribe({ communityObj, communityId }) {
   const { user } = useAuth();
   const [subscriptions, setSubscriptions] = useState([]);
   const [subscriptionId, setSubscriptionId] = useState('');
   const [subscribed, setSubscribed] = useState(false);
   const [admin, setAdmin] = useState(false);
 
-  const checkSubscribed = (array) => {
-    array.forEach((subscription) => {
+  const checkSubscribed = async (array) => {
+    setAdmin(false);
+    setSubscribed(false);
+    await array.forEach((subscription) => {
       if (subscription.userId === user.uid && subscription.isAdmin === true) {
         setAdmin(true);
       } else if (subscription.userId === user.uid) {
-        setAdmin(false);
         setSubscribed(true);
         setSubscriptionId(subscription.id);
       }
@@ -36,14 +37,14 @@ export default function Subscribe({ communityObj }) {
   const createSubscription = () => {
     const payload = {
       communityObj,
-      communityId: communityObj.id,
+      communityId: communityId.toString(),
       userId: user.uid,
       isAdmin: false,
     };
     createUserCommunity(payload).then(({ name }) => {
       const patchPayload = { id: name };
       updateUserCommunity(patchPayload).then(() => {
-        communitySubscriptions(communityObj.id);
+        communitySubscriptions(communityId);
       });
     });
   };
@@ -54,13 +55,13 @@ export default function Subscribe({ communityObj }) {
       createSubscription();
     } else {
       setSubscribed(false);
-      deleteUserCommunity(subscriptionId).then(() => communitySubscriptions(communityObj.id));
+      deleteUserCommunity(subscriptionId).then(() => communitySubscriptions(communityId));
     }
   };
 
   useEffect(() => {
-    communitySubscriptions(communityObj.id);
-  }, [communityObj.id]);
+    communitySubscriptions(communityId);
+  }, [communityId]);
 
   useEffect(() => {
     checkSubscribed(subscriptions);
@@ -68,7 +69,7 @@ export default function Subscribe({ communityObj }) {
 
   return (
     <div className="subscriptionContainer">
-      {admin ? <h2>Welcome Home, Boss</h2> : (
+      {admin === true ? <h2>Welcome Home, Boss</h2> : (
         <Checkbox
           label={{ 'aria-label': 'Subscribe Button' }}
           icon={<Button variant="outlined" color="success" sx={{ color: 'antiquewhite', width: '160px' }}>Subscribe</Button>}
@@ -85,11 +86,6 @@ export default function Subscribe({ communityObj }) {
 }
 
 Subscribe.propTypes = {
-  communityObj: PropTypes.shape({
-    id: PropTypes.string,
-  }),
-};
-
-Subscribe.defaultProps = {
-  communityObj: {},
+  communityId: PropTypes.string.isRequired,
+  communityObj: PropTypes.shape({}).isRequired,
 };

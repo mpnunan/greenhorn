@@ -2,7 +2,7 @@ import { Button } from '@mui/material';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
 
-export default function CommunityButton({ communityObj, keyNumber }) {
+export default function CommunityButton({ communityObj, keyNumber, clickAction }) {
   return (
     <Link href={`/communities/${communityObj.id}`} passHref>
       <Button
@@ -15,6 +15,7 @@ export default function CommunityButton({ communityObj, keyNumber }) {
             bgcolor: 'antiquewhite',
           },
         }}
+        onClick={clickAction}
       >
         {communityObj.name}
       </Button>
@@ -28,4 +29,5 @@ CommunityButton.propTypes = {
     name: PropTypes.string,
   }).isRequired,
   keyNumber: PropTypes.number.isRequired,
+  clickAction: PropTypes.func.isRequired,
 };

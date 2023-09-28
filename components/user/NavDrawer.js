@@ -124,6 +124,9 @@ export default function NavDrawer() {
         <Button
           sx={{
             color: 'antiquewhite',
+            width: 'fit-content',
+            whiteSpace: 'nowrap',
+            height: 'fit-content',
             marginLeft: '20px',
             ':hover': {
               border: '1px solid antiquewhite',

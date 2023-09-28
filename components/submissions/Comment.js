@@ -29,7 +29,25 @@ export default function Comment({ commentObj, afterUpdate }) {
           {commentObj.body}
         </Typography>
         <>
-          {user.uid === commentObj.userId ? <Button onClick={deleteComment}>Delete Comment</Button> : null}
+          {user.uid === commentObj.userId
+            ? (
+              <Button
+                onClick={deleteComment}
+                sx={{
+                  color: 'rgba(5, 10, 5, .8)',
+                  border: '1px solid rgba(255, 0, 0, 0)',
+                  borderRadius: '4px',
+                  ':hover': {
+                    bgcolor: 'transparent',
+                    border: '1px solid rgba(255, 0, 0, .8)',
+                    color: 'rgba(255, 0, 0, .8)',
+                  },
+                }}
+              >
+                Delete Comment
+              </Button>
+            )
+            : null}
         </>
       </CardContent>
     </Card>
