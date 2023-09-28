@@ -16,6 +16,7 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   box-sizing: border-box;
   background-image: url("rebar.avif");
+  background-repeat: repeat;
 }
 
 a {
@@ -27,9 +28,31 @@ a {
   box-sizing: border-box;
 }
 
-.MuiDrawer-paper {
-  background-color: antiquewhite !important;
+.MuiDrawer-paper.MuiDrawer-paperAnchorRight {
+  background-color: antiquewhite;
 }
+
+.MuiDrawer-paper.MuiDrawer-paperAnchorLeft {
+  background-color: transparent;
+  color: antiquewhite;
+  width: 140px;
+  padding: 8px;
+}
+
+.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded > .MuiCardContent-root {
+  padding-bottom: 8px;
+}
+
+.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded > .MuiCardActions-root.MuiCardActions-spacing {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded > .MuiCardActions-root.MuiCardActions-spacing > .MuiButton-root.MuiButton-text {
+  padding: 2px;
+  text-align: center;
+}
+
 
 header {
   display: flex;

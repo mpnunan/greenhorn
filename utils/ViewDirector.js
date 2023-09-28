@@ -3,6 +3,7 @@ import { useAuth } from './context/authContext';
 import Loading from '../components/Loading';
 import Signin from '../components/Signin';
 import NavBarAuth from '../components/NavBarAuth';
+import CommunitiesDrawerDesktop from '../components/user/CommunitiesDrawerDesktop';
 
 const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) => {
   const { user, userLoading } = useAuth();
@@ -17,6 +18,9 @@ const ViewDirectorBasedOnUserAuthStatus = ({ component: Component, pageProps }) 
     return (
       <>
         <NavBarAuth /> {/* NavBar only visible if user is logged in and is in every view */}
+        <aside className="communityNavigation">
+          <CommunitiesDrawerDesktop />
+        </aside>
         <div className="container">
           <Component {...pageProps} />
         </div>

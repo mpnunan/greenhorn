@@ -1,7 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import {
+  Box,
   Button,
   Card,
   CardContent,
@@ -14,17 +16,27 @@ import SubmissionCardActions from './SubmissionCardActions';
 import RequestActions from './RequestActions';
 import LikeSave from './LikeSave';
 import deleteSubmissionData from '../../api/joinedSubmissionData';
+import { getPostComments } from '../../api/userCommentData';
 
 export default function Submission({ submissionObj, afterUpdate }) {
   const { user } = useAuth();
   const [userState, setUserState] = useState(false);
   const [userRequestState, setUserRequestState] = useState(false);
   const [answer, setAnswer] = useState(false);
+  const [commentNumber, setCommentNumber] = useState(0);
 
   const deletePost = () => {
     if (window.confirm(`Delete ${submissionObj.title}?`)) {
       deleteSubmissionData(submissionObj.id).then(() => afterUpdate());
     }
+  };
+
+  const countComments = () => {
+    getPostComments(submissionObj.id).then((comments) => {
+      if (comments.length) {
+        setCommentNumber(comments.length);
+      } else setCommentNumber(0);
+    });
   };
 
   useEffect(() => {
@@ -38,6 +50,10 @@ export default function Submission({ submissionObj, afterUpdate }) {
   useEffect(() => {
     if (submissionObj.requestId) setAnswer(true);
   }, [submissionObj]);
+
+  useEffect(() => {
+    countComments();
+  }, []);
 
   return (
     <Card
@@ -76,25 +92,32 @@ export default function Submission({ submissionObj, afterUpdate }) {
         sx={{
           display: 'flex',
           justifyContent: 'space-between',
+          padding: '2px 8px 2px 8px',
+          heigh: 'fit-content',
         }}
       >
-        <Link passHref href={`/submission/${submissionObj.id}`}>
-          <IconButton
-            sx={{
-              ':hover': {
-                bgcolor: 'transparent',
-              },
-            }}
-          >
-            <ChatBubbleOutline
+        <Box>
+          <>
+            {commentNumber}
+          </>
+          <Link passHref href={`/submission/${submissionObj.id}`}>
+            <IconButton
               sx={{
                 ':hover': {
-                  color: 'rgba(5, 10, 5, 1)',
+                  bgcolor: 'transparent',
                 },
               }}
-            />
-          </IconButton>
-        </Link>
+            >
+              <ChatBubbleOutline
+                sx={{
+                  ':hover': {
+                    color: 'rgba(5, 10, 5, 1)',
+                  },
+                }}
+              />
+            </IconButton>
+          </Link>
+        </Box>
         <>
           {answer
             ? (

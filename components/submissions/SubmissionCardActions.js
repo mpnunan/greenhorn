@@ -29,6 +29,8 @@ export default function SubmissionCardActions({ submissionObj, cardAction }) {
         sx={{
           color: 'rgba(0, 0, 0, 0.6)',
           margin: '4px 4px',
+          border: '1px solid rgba(5, 60, 5, 0)',
+          bgcolor: 'transparent',
           ':hover': {
             color: 'rgba(5,60,5,.8)',
             border: '1px solid rgba(5, 60, 5, .8)',
