@@ -9,14 +9,26 @@ function Signin() {
       style={{
         height: '90vh',
         padding: '30px',
-        maxWidth: '400px',
         margin: '0 auto',
         color: 'rgb(5, 120, 5)',
       }}
     >
-      <h1>Welcome</h1>
+      <h1>Welcome to <span style={{ color: 'rgb(5, 140, 5)' }}>greenhorn</span></h1>
 
-      <Button type="button" variant="contained" color="success" sx={{ color: 'antiquewhite', opacity: '.8' }} className="copy-btn" onClick={signIn}>
+      <Button
+        type="button"
+        variant="contained"
+        color="success"
+        sx={{
+          width: '240px',
+          color: 'antiquewhite',
+          opacity: '.82',
+          marginLeft: 'auto',
+          marginRight: 'auto',
+        }}
+        className="copy-btn"
+        onClick={signIn}
+      >
         Sign In
       </Button>
     </div>
