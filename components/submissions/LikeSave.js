@@ -137,6 +137,13 @@ export default function LikeSave({ submissionObj }) {
           checkedIcon={<Favorite color="success" />}
           checked={liked}
           onChange={(handleLike)}
+          sx={{
+            opacity: '.75',
+            ':hover': {
+              bgcolor: 'transparent',
+              opacity: '1',
+            },
+          }}
         />
       </div>
       <Checkbox
@@ -145,6 +152,13 @@ export default function LikeSave({ submissionObj }) {
         checkedIcon={<BookmarkIcon color="success" />}
         checked={saved}
         onChange={handleSave}
+        sx={{
+          opacity: '.75',
+          ':hover': {
+            bgcolor: 'transparent',
+            opacity: '1',
+          },
+        }}
       />
     </div>
   );

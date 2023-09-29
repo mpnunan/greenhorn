@@ -41,6 +41,7 @@ export default function NavBarAuth() {
               <Button sx={{
                 color: 'antiquewhite',
                 marginLeft: '20px',
+                border: '1px solid rgba(0, 0, 0, 0)',
                 ':hover': {
                   border: '1px solid antiquewhite',
                 },
@@ -52,6 +53,7 @@ export default function NavBarAuth() {
             <Link passHref href="/submission/submitNew">
               <Button sx={{
                 color: 'antiquewhite',
+                border: '1px solid rgba(0, 0, 0, 0)',
                 ':hover': {
                   border: '1px solid antiquewhite',
                 },

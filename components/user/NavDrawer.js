@@ -128,6 +128,7 @@ export default function NavDrawer() {
             whiteSpace: 'nowrap',
             height: 'fit-content',
             marginLeft: '20px',
+            border: '1px solid rgba(0, 0, 0, 0)',
             ':hover': {
               border: '1px solid antiquewhite',
             },

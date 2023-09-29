@@ -110,8 +110,9 @@ export default function Submission({ submissionObj, afterUpdate }) {
             >
               <ChatBubbleOutline
                 sx={{
+                  opacity: '.8',
                   ':hover': {
-                    color: 'rgba(5, 10, 5, 1)',
+                    color: 'rgba(5, 10, 5, .9)',
                   },
                 }}
               />
@@ -125,6 +126,7 @@ export default function Submission({ submissionObj, afterUpdate }) {
                 <Button
                   sx={{
                     color: 'rgba(0, 0, 0, 0.6)',
+                    border: '1px solid rgba(5, 60, 5, 0)',
                     ':hover': {
                       color: 'rgba(5,60,5,.8)',
                       border: '1px solid rgba(5, 60, 5, .8)',
