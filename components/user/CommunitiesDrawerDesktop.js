@@ -51,6 +51,7 @@ export default function CommunitiesDrawerDesktop() {
                   padding: '1px',
                   textAlign: 'center',
                   borderRadius: '4px',
+                  border: '1px solid rgba(0, 0, 0, 0)',
                   ':hover': {
                     border: '1px solid antiquewhite',
                   },
