@@ -1,34 +1,34 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { getCommunityOnlySubmissions } from '../../api/communityData';
+import { getCommunityRequests } from '../../api/communityData';
 import Submission from '../submissions/Submission';
 
-export default function CommunitySubmissions({ communityObj }) {
-  const [communitySubmissions, setCommunitySubmissions] = useState([]);
+export default function CommunityRequests({ communityObj }) {
+  const [communityRequests, setCommunityRequests] = useState([]);
 
-  const communityPosts = (id) => {
-    getCommunityOnlySubmissions(id).then(setCommunitySubmissions);
+  const communityRequestPosts = (id) => {
+    getCommunityRequests(id).then(setCommunityRequests);
   };
 
   const updatePage = () => {
-    communityPosts(communityObj.id);
+    communityRequestPosts(communityObj.id);
   };
 
   useEffect(() => {
-    communityPosts(communityObj.id);
+    communityRequestPosts(communityObj.id);
   }, [communityObj.id]);
 
   return (
     <section className="submissionSection communityPageSubmissions">
-      {communitySubmissions.map((communitySubmission) => (
+      {communityRequests?.map((communitySubmission) => (
         <Submission key={communitySubmission.id} submissionObj={communitySubmission} afterUpdate={updatePage} />
       ))}
     </section>
   );
 }
 
-CommunitySubmissions.propTypes = {
+CommunityRequests.propTypes = {
   communityObj: PropTypes.shape({
     id: PropTypes.string,
   }).isRequired,
