@@ -1,14 +1,23 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { getCommunityRequests } from '../../api/communityData';
+// import { getCommunityRequests } from '../../api/communityData';
 import Submission from '../submissions/Submission';
+import { getOpenRequests } from '../../api/joinedRequestData';
 
 export default function CommunityRequests({ communityObj }) {
   const [communityRequests, setCommunityRequests] = useState([]);
 
+  const getOpenCommunityRequests = async (id) => {
+    const allOpenRquests = await getOpenRequests();
+    const communityOpenRequests = allOpenRquests.filter((request) => (
+      request.communityId === id
+    ));
+    return communityOpenRequests;
+  };
+
   const communityRequestPosts = (id) => {
-    getCommunityRequests(id).then(setCommunityRequests);
+    getOpenCommunityRequests(id).then(setCommunityRequests);
   };
 
   const updatePage = () => {

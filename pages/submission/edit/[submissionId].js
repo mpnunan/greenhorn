@@ -18,7 +18,7 @@ export default function UpdateSubmission() {
         <h1>Update</h1>
       </header>
       <section id="editSubmissionContainer">
-        <SubmissionForm submissionObj={submissionEdit} />
+        <SubmissionForm key={`${submissionId}Form`} submissionObj={submissionEdit} />
       </section>
     </main>
   );

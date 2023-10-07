@@ -19,7 +19,7 @@ export default function AnswerRequest() {
       <section
         id="responseSubmissionContainer"
       >
-        <SubmissionForm requestObj={requestEdit} />
+        <SubmissionForm key={`${requestId}Form`} requestObj={requestEdit} />
       </section>
     </main>
   );
