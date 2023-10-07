@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { Button, Paper } from '@mui/material';
 import Link from 'next/link';
-import { getSingleCommunity } from '../../api/communityData';
-import CommunitySubmissions from '../../components/communities/CommunitySubmissions';
-import Subscribe from '../../components/communities/Subscribe';
+import { Button, Paper } from '@mui/material';
+import { getSingleCommunity } from '../../../api/communityData';
+import CommunityRequests from '../../../components/communities/CommunityRequests';
 
-export default function CommunityPage() {
+export default function CommunityRequestsPage() {
   const [community, setCommunity] = useState({});
   const router = useRouter();
 
@@ -29,10 +28,9 @@ export default function CommunityPage() {
       }}
     >
       <header>
-        <h1>{`The ${community.name} page`}</h1>
-        <Subscribe communityObj={community} communityId={communityId} />
-        <h3>{`${community.description}`}</h3>
-        <Link href={`/requests/communityRequests/${community.id}`} passHref>
+        <h1>{`Open requests for the ${community.name} community`}</h1>
+        <h3>Lend a hand</h3>
+        <Link href={`/communities/${communityId}`} passHref>
           <Button
             variant="text"
             sx={{
@@ -45,11 +43,11 @@ export default function CommunityPage() {
               },
             }}
           >
-            {`Open Requests for ${community.name}`}
+            {`Back to ${community.name}`}
           </Button>
         </Link>
       </header>
-      <CommunitySubmissions communityObj={community} />
+      <CommunityRequests communityObj={community} />
     </Paper>
   );
 }

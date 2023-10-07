@@ -18,6 +18,18 @@ const getCommunitySubmissions = async (id) => {
   return Object.values(communitySubmissions.data);
 };
 
+const getCommunityOnlySubmissions = async (id) => {
+  const communitySubmissions = await getCommunitySubmissions(id);
+  const communityOnlySubmissions = communitySubmissions.filter((submission) => (submission.request === false));
+  return communityOnlySubmissions;
+};
+
+const getCommunityRequests = async (id) => {
+  const communitySubmissions = await getCommunitySubmissions(id);
+  const communityRequests = communitySubmissions.filter((submission) => (submission.request === true));
+  return communityRequests;
+};
+
 const createCommunity = async (payload) => {
   const newCommunity = await axios.post(`${greenhornEndpoint}/communities.json`, payload);
   return newCommunity.data;
@@ -37,6 +49,8 @@ export {
   getAllCommunities,
   getSingleCommunity,
   getCommunitySubmissions,
+  getCommunityOnlySubmissions,
+  getCommunityRequests,
   createCommunity,
   updateCommunity,
   deleteCommunity,
