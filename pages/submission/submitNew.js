@@ -7,7 +7,7 @@ export default function NewSubmission() {
         <h1>Ask or Answer</h1>
       </header>
       <section id="newSubmissionContainer">
-        <SubmissionForm />
+        <SubmissionForm key="newSubmission" />
       </section>
     </main>
   );
