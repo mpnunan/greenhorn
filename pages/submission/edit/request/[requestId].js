@@ -17,8 +17,7 @@ export default function AnswerRequest() {
         <h1>{ `Answer "${requestEdit.title}"` }</h1>
       </header>
       <section
-        id="editSubmissionContainer"
-        className="submissionSection"
+        id="responseSubmissionContainer"
       >
         <SubmissionForm requestObj={requestEdit} />
       </section>
